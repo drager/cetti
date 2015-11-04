@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export class Hello extends React.Component<{}, {}> {
-  private message:string;
+  private message: string;
 
   constructor() {
     super();

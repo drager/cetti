@@ -6,6 +6,7 @@
     "setup": "npm-run-all setup:*",
     "setup:typings": "tsd install",
     "setup:tsconfig": "cp tsconfig.base.json tsconfig.json",
+    "setup:typings_custom": "cp -a typings_custom/* typings/",
     "start": "npm run setup && npm run dev",
     "lint": "tslint --rules-dir tools/lint-rules `find app -name '*.ts' -o -name '*.tsx'`",
     "build": "npm-run-all setup:* && npm-run-all build:*",
@@ -14,10 +15,12 @@
     "dev": "webpack-dev-server --hot --inline --port 3000"
   },
   "dependencies": {
+    "history": "^1.13.0",
     "immutable": "^3.7.5",
     "ramda": "^0.18.0",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
+    "react-router": "^1.0.0-rc4",
     "redux": "^3.0.4",
     "rx": "^4.0.6"
   },
@@ -38,7 +41,7 @@
     "tsconfig-glob": "^0.2.1",
     "tsd": "^0.6.5",
     "tslint": "^3.0.0-dev.1",
-    "typescript": "^1.8.0-dev.20151103",
+    "typescript": "^1.7.0-dev.20151016",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
   },

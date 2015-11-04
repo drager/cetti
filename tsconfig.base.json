@@ -5,8 +5,9 @@
         "emitDecoratorMetadata": true,
         "inlineSourceMap": false,
         "inlineSources": false,
-        "outDir": ".tmp/ts",
-        "target": "es6"
+        "target": "es6",
+        "module": "es6",
+        "outDir": ".tmp/ts"
     },
     "filesGlob": [
         "*.ts",

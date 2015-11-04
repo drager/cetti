@@ -3,10 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "postinstall": "tsd install && npm run setup",
     "setup": "npm-run-all setup:*",
+    "setup:typings": "tsd install",
     "setup:tsconfig": "cp tsconfig.base.json tsconfig.json",
     "start": "npm run setup && npm run dev",
+    "lint": "tslint --rules-dir tools/lint-rules `find app -name '*.ts' -o -name '*.tsx'`",
+    "build": "tsc",
     "dev": "webpack-dev-server --hot --inline --port 3000"
   },
   "dependencies": {

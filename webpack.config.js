@@ -1,28 +1,35 @@
 var path = require('path');
 var config = {
-  entry: [
-    './app/index.jsx',
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server'
-  ],
+  entry: {
+    javascript: __dirname + '/app/index',
+    html: __dirname + '/app/index.html'
+  },
   output: {
-    path: './dist/',
-    filename: 'bundle.js'
+    path: __dirname + '/dist',
+    filename: 'app.js',
   },
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.ts(x?)$/,
         exclude: /node_modules/,
-        loader: 'babel'
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel'
+        loaders: [
+          'react-hot',
+          'babel?' + JSON.stringify({
+            presets: ['react', 'es2015', 'stage-1'],
+          }),
+          'ts',
+       ],
+     },
+     {
+        test: /\.html$/,
+        loader: 'file?name=[name].[ext]',
       }
     ]
-  }
+  },
+  resolve: {
+    extensions: ['', '.js', '.ts', '.tsx']
+  },
 };
 
 module.exports = config;

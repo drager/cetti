@@ -8,7 +8,9 @@
     "setup:tsconfig": "cp tsconfig.base.json tsconfig.json",
     "start": "npm run setup && npm run dev",
     "lint": "tslint --rules-dir tools/lint-rules `find app -name '*.ts' -o -name '*.tsx'`",
-    "build": "tsc",
+    "build": "npm-run-all setup:* && npm-run-all build:*",
+    "build:tsconfig": "tsconfig",
+    "build:typescript": "tsc",
     "dev": "webpack-dev-server --hot --inline --port 3000"
   },
   "dependencies": {

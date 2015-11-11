@@ -2,7 +2,7 @@ import * as React from 'react';
 import {render} from 'react-dom';
 import {Router, Route} from 'react-router';
 
-import {NavBar} from './components/navbar';
+import {NavBar} from './components/nav-bar';
 
 const styles = Object.freeze({
   main: {

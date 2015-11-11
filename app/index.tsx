@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { Router, Route } from 'react-router';
 
-import { Error } from './entites';
+import { Activity } from './entites';
 
 import { NavBar } from './components/nav-bar';
 import { Stream } from './components/stream';
@@ -15,12 +15,12 @@ const styles = Object.freeze({
 });
 
 class App extends React.Component<{children: JSX.Element}, {}> {
-  private errors: Error[];
+  private activities: Activity[];
 
   constructor() {
     super();
 
-    this.errors = [
+    this.activities = [
       {
         id: 1,
         title: `./app/components/card-list.tsx
@@ -42,7 +42,7 @@ class App extends React.Component<{children: JSX.Element}, {}> {
       <div>
         <NavBar />
         <main style={styles.main}>
-          <Stream errors={this.errors} />
+          <Stream activities={this.activities} />
           {this.props.children}
         </main>
       </div>

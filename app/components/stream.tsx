@@ -3,7 +3,7 @@ import * as Colors from 'material-ui/lib/styles/colors';
 import * as Typography from 'material-ui/lib/styles/typography';
 import { Avatar, Card, CardActions, CardHeader, FontIcon } from 'material-ui';
 
-import { Error } from '../entites';
+import { Activity } from '../entites';
 
 import { IconButton } from './icon-button';
 
@@ -20,7 +20,7 @@ const styles = Object.freeze({
   },
 });
 
-export class Stream extends React.Component<{errors: Error[]}, {}> {
+export class Stream extends React.Component<{activities: Activity[]}, {}> {
 
   render() {
     return (
@@ -31,7 +31,7 @@ export class Stream extends React.Component<{errors: Error[]}, {}> {
   }
 
   private renderError() {
-    return this.props.errors.map((error) => {
+    return this.props.activities.map((error) => {
           return (
               <Card key={error.id}>
                 <CardHeader

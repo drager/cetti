@@ -1,4 +1,4 @@
-export interface Error {
+export interface Activity {
     id: number;
     title: string;
     timesOccurred: number;

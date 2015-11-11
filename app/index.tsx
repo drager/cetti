@@ -1,16 +1,23 @@
 import * as React from 'react';
 import {render} from 'react-dom';
-import {Link, Router, Route} from 'react-router';
+import {Router, Route} from 'react-router';
 
-import {Hello} from './components/hello';
+import {NavBar} from './components/nav-bar';
+
+const styles = Object.freeze({
+  main: {
+    flex: 1,
+    fontFamily: 'Roboto',
+  },
+});
 
 class App extends React.Component<{children: JSX.Element}, {}> {
 
   render() {
     return (
       <div>
-        <Link to='/hello'>Hello</Link>
-        {this.props.children}
+        <NavBar />
+        <main style={styles.main}></main>
       </div>
     );
   }
@@ -20,7 +27,6 @@ render(
   (
     <Router>
       <Route path='/' component={App}>
-        <Route path='hello' component={Hello} />
       </Route>
     </Router>
   ),

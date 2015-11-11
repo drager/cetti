@@ -12,11 +12,13 @@
     "build": "npm-run-all setup:* && npm-run-all build:*",
     "build:tsconfig": "tsconfig",
     "build:typescript": "tsc",
-    "dev": "webpack-dev-server --hot --inline --port 3000"
+    "dev": "webpack-dev-server --hot --inline --port 3000",
+    "clean": "rm -rf .tmp"
   },
   "dependencies": {
     "history": "^1.13.0",
     "immutable": "^3.7.5",
+    "material-ui": "^0.13.2",
     "ramda": "^0.18.0",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",

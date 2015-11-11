@@ -1,8 +1,9 @@
 import * as React from 'react';
-import {render} from 'react-dom';
-import {Router, Route} from 'react-router';
+import { render } from 'react-dom';
+import { Router, Route } from 'react-router';
 
-import {NavBar} from './components/nav-bar';
+import { NavBar } from './components/nav-bar';
+import { Stream } from './components/stream';
 
 const styles = Object.freeze({
   main: {
@@ -17,7 +18,10 @@ class App extends React.Component<{children: JSX.Element}, {}> {
     return (
       <div>
         <NavBar />
-        <main style={styles.main}></main>
+        <main style={styles.main}>
+          <Stream />
+          {this.props.children}
+        </main>
       </div>
     );
   }

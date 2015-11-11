@@ -1,8 +1,11 @@
 import * as React from 'react';
-
 import * as Colors from 'material-ui/lib/styles/colors';
 import * as Typography from 'material-ui/lib/styles/typography';
-import { Avatar, Card, CardHeader } from 'material-ui';
+import { Avatar, Card, CardActions, CardHeader, FontIcon } from 'material-ui';
+
+import { Error } from '../entites';
+
+import { IconButton } from './icon-button';
 
 const styles = Object.freeze({
   avatar: {
@@ -10,49 +13,38 @@ const styles = Object.freeze({
     color: Colors.fullWhite,
     fontWeight: Typography.fontWeightLight,
   },
+  doneIcon: {
+    fontSize: 32,
+    display: 'flex',
+    color: Colors.green500,
+  },
 });
 
-export class Stream extends React.Component<{}, {}> {
-  private error: [{
-    title: string,
-    timesOccurred: number,
-    timeOfOccurence: string,
-  }];
-
-  constructor() {
-    super();
-
-    this.error = [
-      {
-        title: `./app/components/card-list.tsx
-                (9,3): error TS2377: Constructors for derived classes must contain a 'super' call.`,
-        timesOccurred: 5,
-        timeOfOccurence: '2015-11-10 09:39:42',
-      },
-      {
-        title: `./app/components/card-list.tsx(54,43): error TS1005: ':' expected.`,
-        timesOccurred: 1,
-        timeOfOccurence: '2015-11-10 10:59:22',
-      },
-    ];
-  }
+export class Stream extends React.Component<{errors: Error[]}, {}> {
 
   render() {
     return (
       <div>
-        <Card>
-          <CardHeader
-            title={this.error[0].title}
-            subtitle={this.error[0].timeOfOccurence}
-            avatar={<Avatar style={styles.avatar}>{this.error[0].timesOccurred}</Avatar>}/>
-        </Card>
-        <Card>
-          <CardHeader
-            title={this.error[1].title}
-            subtitle={this.error[1].timeOfOccurence}
-            avatar={<Avatar style={styles.avatar}>{this.error[1].timesOccurred}</Avatar>}/>
-        </Card>
+        {this.renderError()}
       </div>
     );
+  }
+
+  private renderError() {
+    return this.props.errors.map((error) => {
+          return (
+              <Card key={error.id}>
+                <CardHeader
+                  title={error.title}
+                  subtitle={error.timeOfOccurence}
+                  avatar={<Avatar style={styles.avatar}>{error.timesOccurred}</Avatar>} />
+                <CardActions>
+                  <IconButton hoverColor='transparent'>
+                    <FontIcon className='material-icons' style={styles.doneIcon}>done</FontIcon>
+                  </IconButton>
+                </CardActions>
+              </Card>
+          );
+    });
   }
 }

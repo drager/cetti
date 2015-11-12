@@ -1,31 +1,19 @@
-import * as Redux from 'redux';
-import { handleActions, Action } from 'redux-actions';
-
 import { Activity } from '../entites';
-import { ADD_ACTIVITY, LOAD_ACTIVITIES } from '../action-types';
+import { ADD_ACTIVITY } from '../action-types';
+import initialState from '../initial-state';
 
-const activityReducer = handleActions<Activity[]>({
-  [LOAD_ACTIVITIES]: (state: Activity[], action: Action): Activity[] => {
-    return action.payload;
-  },
-
-  [ADD_ACTIVITY]: (state: Activity[], action: Action): Activity[] => {
-    const activities = state;
-
+const activities = () => <Activity[]>({
+  [ADD_ACTIVITY]: (state: Activity[], action): Activity[] => {
     return [
+      ...state,
       {
         id: action.payload.id,
         title: action.payload.title,
         timesOccurred: action.payload.timesOccurred,
         timeOfOccurence: action.payload.timeOfOccurence,
       },
-      ...activities,
     ];
   },
-}, []);
+}, initialState);
 
-const reducers = Redux.combineReducers({
-    activityReducer
-});
-
-export default reducers;
+export default activities;

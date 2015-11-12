@@ -1,2 +1,1 @@
-export const LOAD_ACTIVITIES = 'LOAD_ACTIVITIES';
 export const ADD_ACTIVITY = 'ADD_ACTIVITY';

@@ -25,6 +25,7 @@
     "react-redux": "^4.0.0",
     "react-router": "^1.0.0-rc4",
     "redux": "^3.0.4",
+    "redux-actions": "^0.8.0",
     "rx": "^4.0.6"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import * as Colors from 'material-ui/lib/styles/colors';
 import * as Typography from 'material-ui/lib/styles/typography';
 import { Avatar, Card, CardActions, CardHeader, FontIcon } from 'material-ui';
@@ -48,3 +49,11 @@ export class Stream extends React.Component<{activities: Activity[]}, {}> {
     });
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    activities: state.activities
+  };
+};
+
+export default connect(mapStateToProps)(Stream);

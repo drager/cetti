@@ -14,6 +14,6 @@ const activities = () => <Activity[]>({
       },
     ];
   },
-}, initialState);
+}, initialState.activities);
 
 export default activities;

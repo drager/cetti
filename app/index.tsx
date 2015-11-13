@@ -12,14 +12,19 @@ import store from './store';
 
 import Main from './components/main';
 
+import Dashboard from './components/dashboard';
+import Stream from './components/stream';
+
 render(
   (
     <Provider store={store}>
       <Router>
         <Route path='/' component={Main}>
+          <Route path='stream' component={Stream} />
+          <Route path='dashboard' component={Dashboard} />
         </Route>
       </Router>
-   </Provider>
+    </Provider>
   ),
   document.getElementById('app')
 );

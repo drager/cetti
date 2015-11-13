@@ -1,36 +1,37 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 
 import { Activity } from '../entites';
 
 import { NavBar } from './nav-bar';
-import { Stream } from './stream';
 
 const styles = Object.freeze({
+  fill: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    height: '100%',
+  },
   main: {
     flex: 1,
     fontFamily: 'Roboto',
   },
 });
 
-export class Main extends React.Component<{activities: Activity[]}, any> {
+type Properties = {
+  activities: Activity[],
+  children: JSX.Element,
+};
+
+export default class Main extends React.Component<Properties, any> {
 
   render() {
     return (
-      <div>
+      <div style={styles.fill}>
         <NavBar />
         <main style={styles.main}>
-          <Stream activities={this.props.activities} />
+          {this.props.children}
         </main>
       </div>
     );
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    activities: state.activities
-  };
-};
-
-export default connect(mapStateToProps)(Main);

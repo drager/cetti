@@ -4,9 +4,13 @@
 
 ## Contribute
 
-If you're interested in helping with evolving this project, then keep on reading.
-If you're not interested in helping right now that's fine as well!
-Any feedback you have about using this project would be greatly appreciated.
+If you're interested in helping with evolving this project, please do, check out [waffle][waffle] for issues
+that can be done.
+
+If there's something you want to fix, just start working and then send a pull request. *Remember*: The pull request can only
+be merged if it passes the [travis build][travis].
+
+Any feedback you have about using this project would also be greatly appreciated.
 
 ### Building
 
@@ -25,7 +29,7 @@ npm run build
 ```
 
 ## Running
-If you just want to run the project, then keep on reading.
+If you just want to run the project, then read below.
 
 #### Prerequisites
 

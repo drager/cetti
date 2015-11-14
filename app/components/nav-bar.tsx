@@ -8,7 +8,7 @@ export class NavBar extends React.Component<{}, {}> {
 
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getMuiTheme(CettiTheme)
+      muiTheme: ThemeManager.getMuiTheme(CettiTheme),
     };
   }
 

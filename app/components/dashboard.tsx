@@ -42,7 +42,7 @@ export class Dashboard extends React.Component<{configuration: DashboardConfigur
 
 const mapStateToProps = state => {
   return {
-    configuration: state.dashboard
+    configuration: state.dashboard,
   };
 };
 

@@ -32,4 +32,16 @@ var config = {
   },
 };
 
+if (process.env.NODE_ENV === 'production') {
+  var webpack = require('webpack');
+
+  config.plugins = [
+    new webpack.optimize.UglifyJsPlugin({
+      comments: false,
+      test: /\.js$/,
+    }),
+  ];
+}
+
+
 module.exports = config;

@@ -5,13 +5,14 @@
   "scripts": {
     "setup": "npm-run-all setup:*",
     "setup:typings": "tsd install",
-    "setup:tsconfig": "cp tsconfig.base.json tsconfig.json",
+    "setup:ts_base_config": "cp tsconfig.base.json tsconfig.json",
+    "setup:tsconfig": "tsconfig -i 2",
     "setup:typings_custom": "cp -a typings_custom/* typings/",
     "start": "npm run setup && npm run build:tsconfig && npm run dev",
     "lint": "tslint --rules-dir tools/lint-rules `find app -name '*.ts' -o -name '*.tsx'`",
-    "build": "npm-run-all setup:* && npm-run-all build:*",
-    "build:tsconfig": "tsconfig",
-    "build:typescript": "tsc",
+    "build": "rm -rf dist && NODE_ENV=production webpack",
+    "build_dev": "webpack",
+    "build_typescript": "tsc",
     "dev": "webpack-dev-server --hot --inline --port 3000",
     "clean": "rm -rf .tmp"
   },

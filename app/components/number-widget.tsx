@@ -5,7 +5,7 @@ import {
   BucketCollection,
   NumberType,
   NumberWidgetConfiguration,
-  WidgetConfiguration
+  WidgetConfiguration,
 } from '../entites';
 
 import { Widget } from './widget';
@@ -50,7 +50,7 @@ export class NumberWidget extends React.Component<Properties, {}> {
 
 const mapStateToProps = state => {
   return {
-    buckets: state.buckets
+    buckets: state.buckets,
   };
 };
 

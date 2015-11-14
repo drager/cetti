@@ -11,7 +11,7 @@ const styles = Object.freeze({
     alignItems: 'center',
   },
   container: {
-    minWidth: 48
+    minWidth: 48,
   },
 });
 

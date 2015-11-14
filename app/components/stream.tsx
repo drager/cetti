@@ -52,7 +52,7 @@ export class Stream extends React.Component<{activities: Activity[]}, {}> {
 
 const mapStateToProps = state => {
   return {
-    activities: state.activities
+    activities: state.activities,
   };
 };
 

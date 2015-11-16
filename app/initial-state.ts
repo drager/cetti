@@ -1,4 +1,4 @@
-import { BucketCollection, NumberType, WidgetType } from './entites';
+import { AxisType, BucketCollection, ChartType, NumberType, WidgetType } from './entites';
 
 const initialState = {
   activities: [
@@ -68,6 +68,39 @@ const initialState = {
           filter: (data) => data.value < 5,
         },
       },
+      {
+        placement: {
+          x: 0,
+          y: 1,
+          width: 2,
+          height: 2,
+        },
+        type: WidgetType.chart,
+        title: 'Bar Chart',
+        bucket: 'chart',
+        typeConfiguration: {
+          chartType: ChartType.bar,
+          xAxis: {type: AxisType.occurence},
+          yAxis: {type: AxisType.value},
+        },
+      },
+      {
+        placement: {
+          x: 2,
+          y: 1,
+          width: 2,
+          height: 2,
+        },
+        type: WidgetType.chart,
+        title: 'Line Chart',
+        bucket: 'chart',
+        typeConfiguration: {
+          chartType: ChartType.line,
+          fill: true,
+          xAxis: {type: AxisType.occurence},
+          yAxis: {type: AxisType.value},
+        },
+      },
     ],
   },
   buckets: {
@@ -103,6 +136,52 @@ const initialState = {
       {
         timestamp: Date.now(),
         value: 4,
+      },
+      {
+        timestamp: Date.now(),
+        value: 5,
+      },
+    ],
+    'chart': [
+      {
+        timestamp: Date.now(),
+        value: 3,
+      },
+      {
+        timestamp: Date.now(),
+        value: 1,
+      },
+      {
+        timestamp: Date.now(),
+        value: 4,
+      },
+      {
+        timestamp: Date.now(),
+        value: 5,
+      },
+      {
+        timestamp: Date.now(),
+        value: 4,
+      },
+      {
+        timestamp: Date.now(),
+        value: 2,
+      },
+      {
+        timestamp: Date.now(),
+        value: 1,
+      },
+      {
+        timestamp: Date.now(),
+        value: 1,
+      },
+      {
+        timestamp: Date.now(),
+        value: 1,
+      },
+      {
+        timestamp: Date.now(),
+        value: 1,
       },
       {
         timestamp: Date.now(),

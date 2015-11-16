@@ -15,11 +15,20 @@ const styles = Object.freeze({
   },
 });
 
-export class IconButton extends React.Component<{children?: JSX.Element, hoverColor?: string}, {}> {
+type Properties = {
+  children?: JSX.Element,
+  hoverColor?: string,
+  onClick?: React.MouseEventHandler,
+  style?: React.CSSProperties,
+}
+
+export class IconButton extends React.Component<Properties, {}> {
 
   render() {
     return (
-      <FlatButton style={styles.container} hoverColor={this.props.hoverColor}>
+      <FlatButton style={Object.assign({}, styles.container, this.props.style)}
+                  hoverColor={this.props.hoverColor}
+                  onClick={this.props.onClick}>
         <div style={styles.iconButton}>
           {this.props.children}
         </div>

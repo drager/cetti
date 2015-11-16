@@ -8,12 +8,14 @@ const initialState = {
               (9,3): error TS2377: Constructors for derived classes must contain a 'super' call.`,
       timesOccurred: 5,
       timeOfOccurence: '2015-11-10 09:39:42',
+      resolved: false,
     },
     {
       id: 2,
       title: `./app/components/card-list.tsx(54,43): error TS1005: ':' expected.`,
       timesOccurred: 1,
       timeOfOccurence: '2015-11-10 10:59:22',
+      resolved: false,
     },
   ],
   dashboard: {

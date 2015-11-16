@@ -12,6 +12,7 @@ const styles = Object.freeze({
     height: '100%',
   },
   main: {
+    display: 'flex',
     flex: 1,
     fontFamily: 'Roboto',
   },

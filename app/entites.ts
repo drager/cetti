@@ -33,7 +33,7 @@ export interface WidgetConfiguration {
   type: WidgetType;
   title: string;
   bucket: string;
-  typeConfiguration: NumberWidgetConfiguration | GraphWidgetConfiguration;
+  typeConfiguration: NumberWidgetConfiguration | ChartWidgetConfiguration;
 }
 
 export interface NumberWidgetConfiguration {
@@ -41,11 +41,19 @@ export interface NumberWidgetConfiguration {
   filter?: (dataPoint: DataPoint) => boolean;
 }
 
-export interface GraphWidgetConfiguration {
-  xAxis: AxisType;
-  xAxisConfiguration?: {property: string};
-  yAxis: AxisType;
-  yAxisConfiguration?: {property: string};
+export interface ChartWidgetConfiguration {
+  xAxis: AxisConfiguration;
+  yAxis: AxisConfiguration;
+  chartType: ChartType;
+  /**
+   * Whenever a line chart should be filled or not
+   */
+  fill?: boolean;
+}
+
+export interface AxisConfiguration {
+  type: AxisType;
+  property?: string;
 }
 
 export enum NumberType {
@@ -84,7 +92,12 @@ export enum AxisType {
   occurence,
 }
 
+export enum ChartType {
+  bar,
+  line,
+}
+
 export enum WidgetType {
+  chart,
   number,
-  graph,
 }

@@ -1,6 +1,6 @@
 import * as Redux from 'redux';
 
-import activityReducer from './reducers/activity';
+import activityReducer from './reducers/activities';
 import dashboardReducer from './reducers/dashboard';
 import bucketReducer from './reducers/bucket';
 

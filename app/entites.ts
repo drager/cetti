@@ -3,6 +3,7 @@ export interface Activity {
   title: string;
   timesOccurred: number;
   timeOfOccurence: string;
+  resolved: boolean;
 }
 
 export interface DataPoint {

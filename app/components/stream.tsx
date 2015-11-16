@@ -2,9 +2,10 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import * as Colors from 'material-ui/lib/styles/colors';
 import * as Typography from 'material-ui/lib/styles/typography';
-import { Avatar, Card, CardActions, CardHeader, FontIcon } from 'material-ui';
+import { Avatar, Card, CardHeader, FontIcon } from 'material-ui';
 
 import { Activity } from '../entites';
+import * as Actions from '../actions/activity';
 
 import { IconButton } from './icon-button';
 
@@ -19,33 +20,50 @@ const styles = Object.freeze({
     display: 'flex',
     color: Colors.green500,
   },
+  header: {
+    alignItems: 'center',
+    display: 'flex',
+  },
+  flex: {
+    flex: 1,
+  },
 });
 
-export class Stream extends React.Component<{activities: Activity[]}, {}> {
+type Properties = {
+  activities: Activity[],
+  markAsResolved: (Activity) => void,
+}
+
+export class Stream extends React.Component<Properties, {}> {
 
   render() {
     return (
       <div>
-        {this.renderError()}
+        {this.renderActivity()}
       </div>
     );
   }
 
-  private renderError() {
-    return this.props.activities.map((error) => {
+  private renderActivity() {
+    console.log(this.props.activities);
+    return this.props.activities.map((activity) => {
+        if (!activity.resolved) {
           return (
-              <Card key={error.id}>
-                <CardHeader
-                  title={error.title}
-                  subtitle={error.timeOfOccurence}
-                  avatar={<Avatar style={styles.avatar}>{error.timesOccurred}</Avatar>} />
-                <CardActions>
-                  <IconButton hoverColor='transparent'>
-                    <FontIcon className='material-icons' style={styles.doneIcon}>done</FontIcon>
-                  </IconButton>
-                </CardActions>
+              <Card key={activity.id}>
+                <CardHeader style={styles.header}
+                  title={activity.title}
+                  subtitle={activity.timeOfOccurence}
+                  avatar={<Avatar style={styles.avatar}>{activity.timesOccurred}</Avatar>}>
+                    <span style={styles.flex} />
+                    <IconButton hoverColor='transparent'
+                                onClick={() => this.props.markAsResolved(activity)}>
+                      <FontIcon className='material-icons' style={styles.doneIcon}>done</FontIcon>
+                    </IconButton>
+
+                </CardHeader>
               </Card>
           );
+        }
     });
   }
 }
@@ -56,4 +74,12 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Stream);
+const mapDispatchToProps = dispatch => {
+  return {
+    markAsResolved: (activity) => {
+      dispatch(Actions.markAsResolved(activity));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Stream);

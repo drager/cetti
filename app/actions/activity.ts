@@ -8,3 +8,10 @@ export const addActivity = (activity: Activity) => {
     activity,
   };
 };
+
+export const markAsResolved = (activity: Activity) => {
+  return {
+    type: types.MARK_ACTIVITY_AS_RESOLVED,
+    activity: activity,
+  };
+};

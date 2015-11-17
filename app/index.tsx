@@ -13,14 +13,14 @@ import store from './store';
 import Main from './components/main';
 
 import Dashboard from './components/dashboard';
-import Stream from './components/stream';
+import ActivityList from './components/activity-list';
 
 render(
   (
     <Provider store={store}>
       <Router>
         <Route path='/' component={Main}>
-          <Route path='stream' component={Stream} />
+          <Route path='stream' component={ActivityList} />
           <Route path='dashboard' component={Dashboard} />
         </Route>
       </Router>

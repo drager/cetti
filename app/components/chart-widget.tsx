@@ -10,6 +10,7 @@ import {
   WidgetConfiguration,
 } from '../entites';
 
+import { catmullRomSpline } from '../lib/catmull-rom-spline';
 import { Widget } from './widget';
 
 type Properties = {
@@ -30,7 +31,7 @@ type Data = {
   type: ChartType,
   x: MinMax,
   y: MinMax,
-  data: {x: number[], y: number[]},
+  points: {x: number, y: number}[],
 };
 
 const padding = 10;
@@ -88,12 +89,13 @@ export class ChartWidget extends React.Component<Properties, {width: number, hei
 
     const x = fixAxis(configuration.xAxis);
     const y = fixAxis(configuration.yAxis);
+    const points = x.map((x, index) => ({x, y: y[index]}));
 
     return {
       type: configuration.chartType,
       x: maxMin(x),
       y: maxMin(y),
-      data: {x, y},
+      points,
     };
   }
 
@@ -124,29 +126,21 @@ export class ChartWidget extends React.Component<Properties, {width: number, hei
     </g>;
   }
 
-  private renderAxis({max, min}: MinMax) {
-    const labels = [
-      {
-        x: padding + axisWidth / 2,
-        y: padding,
-        text: max,
-      },
-      {
-        x: padding + axisWidth / 2,
-        y: this.state.height - padding,
-        text: min,
-      },
-    ];
+  private renderAxis({min, length}: MinMax) {
+    const labels = [];
 
-    const labelCount = Math.round(this.state.height / 50) - 1;
-    const positionStep = this.state.height / labelCount;
-    const valueStep = (max + min) / labelCount;
+    const diagramHeight = (this.state.height - padding * 2);
+    const labelCount = Math.round(Math.log10(diagramHeight) * 1.5);
+    const positionStep = diagramHeight / (labelCount - 1);
 
-    for (let i = 1; i < labelCount; i++) {
+    for (let i = 0; i < labelCount; i++) {
+      const position = ((diagramHeight - (positionStep * (i))));
+      const percentageOfSpan = (diagramHeight - position) / diagramHeight;
+
       labels.push({
         x: padding + axisWidth / 2,
-        y: this.state.height - positionStep * i,
-        text: Math.round(valueStep * i * 10) / 10,
+        y: position + padding,
+        text: Math.round((min + length * percentageOfSpan) * 10) / 10,
       });
     }
 
@@ -157,7 +151,6 @@ export class ChartWidget extends React.Component<Properties, {width: number, hei
   }
 
   private renderDiagram(data: Data): JSX.Element | JSX.Element[] {
-    const {x, y} = data.data;
     const diagramHeight = (this.state.height - padding * 2);
     const diagramWidth = (this.state.width - padding * 2 - axisWidth);
     let xScale = diagramWidth / data.x.length;
@@ -165,9 +158,8 @@ export class ChartWidget extends React.Component<Properties, {width: number, hei
 
     switch (data.type) {
       case ChartType.bar:
-        const points = x.map((x, index) => ({x, y: y[index]}));
 
-        return points.map((point, index) => {
+        return data.points.map((point, index) => {
           const width = 0.5 * xScale;
           xScale = (diagramWidth - width) / data.x.length;
           const height = (point.y - data.y.min) * yScale;
@@ -177,21 +169,25 @@ export class ChartWidget extends React.Component<Properties, {width: number, hei
         });
 
       case ChartType.line:
-        const stop = (x, y) => `${(x - data.x.min) * xScale + axisWidth} ` +
-                               `${diagramHeight + padding - (y - data.y.min) * yScale}`;
+        const yMin = data.y.min;
+        const stop = (x, y) => `${(x - data.x.min) * xScale + axisWidth}, ` +
+                               `${diagramHeight + padding - (Math.max(y, yMin) - yMin) * yScale}`;
 
+        let points = data.points;
+        if (this.getConfiguration().smooth) {
+          points = catmullRomSpline(points, 20);
+        }
         let line;
-
         if (this.getConfiguration().fill) {
-          line = `M ${stop(data.x.min, data.y.min)} L ${stop(x[0], y[0])}`;
+          line = `M ${stop(data.x.min, data.y.min)} L ${stop(points[0].x, points[0].y)}`;
         } else {
-          line = `M ${stop(x[0], y[0])}`;
+          line = `M ${stop(points[0].x, points[0].y)} L`;
         }
 
-        x.slice(1).forEach((x, index) => (line += ` L ${stop(x, y[index + 1])}`));
+        points.slice(1).forEach(({x, y}, index) => (line += ` ${stop(x, y)}`));
 
         if (this.getConfiguration().fill) {
-          line += ` L ${stop(x[x.length - 1], data.y.min)}`;
+          line += ` L ${stop(points[points.length - 1].x, data.y.min)}`;
         }
 
         return <path d={line} strokeWidth={3} stroke='black'

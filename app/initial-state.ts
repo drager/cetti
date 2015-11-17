@@ -97,6 +97,7 @@ const initialState = {
         typeConfiguration: {
           chartType: ChartType.line,
           fill: true,
+          smooth: true,
           xAxis: {type: AxisType.occurence},
           yAxis: {type: AxisType.value},
         },
@@ -177,7 +178,7 @@ const initialState = {
       },
       {
         timestamp: Date.now(),
-        value: 1,
+        value: 2,
       },
       {
         timestamp: Date.now(),

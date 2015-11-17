@@ -49,6 +49,10 @@ export interface ChartWidgetConfiguration {
    * Whenever a line chart should be filled or not
    */
   fill?: boolean;
+  /**
+   * Whenever the curve of a line chart should be smoothed or not
+   */
+  smooth?: boolean;
 }
 
 export interface AxisConfiguration {

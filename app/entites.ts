@@ -3,7 +3,23 @@ export interface Activity {
   title: string;
   timesOccurred: number;
   timeOfOccurence: string;
+  // TODO(Jesper): Maybe do something different here, maybe we do not want
+  // Every activity to have an resolved as well as stackframe.
+  // This will have to due for the moment when we only handles "errors".
+  // Maybe we want another interface...
   resolved: boolean;
+  message: string;
+  stacktrace: StackFrame[];
+}
+
+export interface StackFrame {
+  functionName: string;
+  args: any[];
+  fileName: string;
+  lineNumber: number;
+  columnNumber: number;
+  source: string;
+  stacktrace: any;
 }
 
 export interface DataPoint {

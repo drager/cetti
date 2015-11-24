@@ -1,14 +1,28 @@
-import { AxisType, BucketCollection, ChartType, NumberType, WidgetType } from './entites';
+import {
+  AxisType,
+  BucketCollection,
+  ChartType,
+  NumberType,
+  WidgetType,
+} from './entites';
 
 const initialState = {
   activities: [
     {
       id: 1,
-      title: `./app/components/card-list.tsx
-              (9,3): error TS2377: Constructors for derived classes must contain a 'super' call.`,
+      title: `Module build failed: SyntaxError:
+      /app/components/activity-detail.tsx: missing super() call in constructor`,
       timesOccurred: 5,
       timeOfOccurence: '2015-11-10 09:39:42',
       resolved: false,
+      stackframe: [{
+        functionName: 'constructor()',
+        args: '',
+        fileName: '/app/components/activity-detail.tsx',
+        lineNumber: 32,
+        columnNumber: 16,
+        source: '',
+      }],
     },
     {
       id: 2,
@@ -16,6 +30,7 @@ const initialState = {
       timesOccurred: 1,
       timeOfOccurence: '2015-11-10 10:59:22',
       resolved: false,
+      stacktrace: '',
     },
   ],
   dashboard: {

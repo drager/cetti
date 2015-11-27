@@ -1,8 +1,10 @@
 import { ActivityItem } from './activity-item';
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import { Activity } from '../entites';
+import { layoutStyles } from '../styles';
 import * as Actions from '../actions/activity';
 
 type Properties = {
@@ -14,7 +16,7 @@ export class ActivityList extends React.Component<Properties, {}> {
 
   render() {
     return (
-      <div>
+      <div style={layoutStyles.flex}>
         {this.renderActivity()}
       </div>
     );
@@ -25,9 +27,11 @@ export class ActivityList extends React.Component<Properties, {}> {
         if (!activity.resolved) {
           return (
               <div key={activity.id}>
-                <ActivityItem activity={activity}
-                              markAsResolved={this.props.markAsResolved}
-                              />
+                <Link to={`/stream/${activity.id}`}>
+                  <ActivityItem activity={activity}
+                                markAsResolved={this.props.markAsResolved}
+                                />
+                </Link>
               </div>
           );
         }

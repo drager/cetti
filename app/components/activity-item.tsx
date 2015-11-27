@@ -4,6 +4,7 @@ import * as Typography from 'material-ui/lib/styles/typography';
 import { Avatar, Card, CardHeader, FontIcon } from 'material-ui';
 
 import { Activity } from '../entites';
+import { layoutStyles } from '../styles';
 
 import { IconButton } from './icon-button';
 
@@ -22,9 +23,6 @@ const styles = Object.freeze({
     alignItems: 'center',
     display: 'flex',
   },
-  flex: {
-    flex: 1,
-  },
 });
 
 type Properties = {
@@ -38,21 +36,21 @@ export class ActivityItem extends React.Component<Properties, {}> {
     const { activity } = this.props;
 
     return (
-      <div>
-        <Card key={activity.id}>
-          <CardHeader style={styles.header}
-            title={activity.title}
-            subtitle={activity.timeOfOccurence}
-            avatar={<Avatar style={styles.avatar}>{activity.timesOccurred}</Avatar>}>
-              <span style={styles.flex} />
-              <IconButton hoverColor='transparent'
-                          onClick={() => this.props.markAsResolved(activity)}>
-                <FontIcon className='material-icons' style={styles.doneIcon}>done</FontIcon>
-              </IconButton>
-
-          </CardHeader>
-        </Card>
-      </div>
+      <Card key={activity.id}>
+        <CardHeader style={styles.header}
+          title={activity.title}
+          subtitle={activity.timeOfOccurence}
+          avatar={<Avatar style={styles.avatar}>{activity.timesOccurred}</Avatar>}>
+            <span style={layoutStyles.flex} />
+            <IconButton hoverColor='transparent'
+                        onClick={(e) => {
+                          e.preventDefault();
+                          this.props.markAsResolved(activity);
+                        }}>
+              <FontIcon className='material-icons' style={styles.doneIcon}>done</FontIcon>
+            </IconButton>
+        </CardHeader>
+      </Card>
     );
   }
 }

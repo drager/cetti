@@ -14,6 +14,7 @@ import Main from './components/main';
 
 import Dashboard from './components/dashboard';
 import ActivityList from './components/activity-list';
+import ActivityDetail from './components/activity-detail';
 
 render(
   (
@@ -21,6 +22,7 @@ render(
       <Router>
         <Route path='/' component={Main}>
           <Route path='stream' component={ActivityList} />
+          <Route path='stream/:id' component={ActivityDetail} />
           <Route path='dashboard' component={Dashboard} />
         </Route>
       </Router>

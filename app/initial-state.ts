@@ -2,6 +2,7 @@ import {
   AxisType,
   BucketCollection,
   ChartType,
+  DashboardsConfiguration,
   NumberType,
   WidgetType,
 } from './entites';
@@ -113,7 +114,7 @@ const initialState = {
         },
       ],
     },
-  },
+  } as DashboardsConfiguration,
   buckets: {
     last: [
       {

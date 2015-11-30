@@ -1,9 +1,8 @@
 import * as React from 'react';
 import * as Colors from 'material-ui/lib/styles/colors';
 import * as Typography from 'material-ui/lib/styles/typography';
-import { connect } from 'react-redux';
 
-import { fontStyles, layoutStyles } from '../styles';
+import { fontStyles, layoutStyles } from '../lib/styles';
 
 const styles = Object.freeze({
   container: {
@@ -34,7 +33,7 @@ const styles = Object.freeze({
   },
 });
 
-class ActivityDetail extends React.Component<{params: {id: string}}, {}> {
+export class ActivityDetail extends React.Component<{params: {id: string}}, {}> {
 
   render() {
     return (
@@ -49,11 +48,3 @@ class ActivityDetail extends React.Component<{params: {id: string}}, {}> {
     );
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    activities: state.activities,
-  };
-};
-
-export default connect(mapStateToProps)(ActivityDetail);

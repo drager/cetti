@@ -25,9 +25,6 @@
     },
     "redux/redux.d.ts": {
       "commit": "708609e0764daeb5eb64104af7aca50c520c4e6e"
-    },
-    "react-redux/react-redux.d.ts": {
-      "commit": "708609e0764daeb5eb64104af7aca50c520c4e6e"
     }
   }
 }

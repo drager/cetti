@@ -4,7 +4,7 @@ import * as Typography from 'material-ui/lib/styles/typography';
 import { Avatar, Card, CardHeader, FontIcon } from 'material-ui';
 
 import { DataPoint, ErrorMessage } from '../entites';
-import { layoutStyles } from '../styles';
+import { layoutStyles } from '../lib/styles';
 
 import { IconButton } from './icon-button';
 
@@ -36,11 +36,16 @@ export class ActivityItem extends React.Component<Properties, {}> {
   render() {
     const { activity } = this.props;
 
+    const format = new Intl.DateTimeFormat('sv-SE', {
+      year: 'numeric', month: 'numeric', day: 'numeric',
+      hour: 'numeric', minute: 'numeric', second: 'numeric',
+    });
+
     return (
       <Card key={activity.id}>
         <CardHeader style={styles.header}
           title={activity.value.message}
-          subtitle={activity.timestamp.toLocaleString()}
+          subtitle={format.format(new Date(activity.timestamp))}
           avatar={<Avatar style={styles.avatar}>{1}</Avatar>}>
             <span style={layoutStyles.flex} />
             <IconButton hoverColor='transparent'

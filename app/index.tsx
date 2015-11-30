@@ -6,25 +6,19 @@ import * as React from 'react';
 
 import { render } from 'react-dom';
 import { Router, Route } from 'react-router';
-import { Provider } from 'react-redux';
 
-import store from './store';
-
-import Main from './components/main';
-
-import Dashboard from './components/dashboard';
-import ActivityDetail from './components/activity-detail';
+import { Main } from './components/main';
+import { Dashboard } from './components/dashboard';
+import { ActivityDetail } from './components/activity-detail';
 
 render(
   (
-    <Provider store={store}>
-      <Router>
-        <Route path='/' component={Main}>
-          <Route path='stream/:id' component={ActivityDetail} />
-          <Route path=':id' component={Dashboard} />
-        </Route>
-      </Router>
-    </Provider>
+    <Router>
+      <Route path='/' component={Main}>
+        <Route path='stream/:id' component={ActivityDetail} />
+        <Route path=':id' component={Dashboard} />
+      </Route>
+    </Router>
   ),
   document.getElementById('app')
 );

@@ -1,12 +1,12 @@
 import * as Redux from 'redux';
 
-import activityReducer from './reducers/activities';
-import dashboardReducer from './reducers/dashboard';
+//import activityReducer from './reducers/activities';
+import dashboardsReducer from './reducers/dashboard';
 import bucketReducer from './reducers/bucket';
 
 const reducers = Redux.combineReducers({
-  activities: activityReducer,
-  dashboard: dashboardReducer,
+//  activities: activityReducer,
+  dashboards: dashboardsReducer,
   buckets: bucketReducer,
 });
 

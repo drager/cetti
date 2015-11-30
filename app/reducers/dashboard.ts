@@ -1,6 +1,6 @@
-import { DashboardConfiguration } from '../entites';
+import { DashboardsConfiguration } from '../entites';
 import initialState from '../initial-state';
 
-const dashboard = () => <DashboardConfiguration>({}, initialState.dashboard);
+const dashboards = () => <DashboardsConfiguration>({}, initialState.dashboards);
 
-export default dashboard;
+export default dashboards;

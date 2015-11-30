@@ -1,8 +1,9 @@
 import * as React from 'react';
 import * as Colors from 'material-ui/lib/styles/colors';
 import * as Typography from 'material-ui/lib/styles/typography';
+import { connect } from 'react-redux';
 
-import { Activity } from '../entites';
+//import { Activity } from '../entites';
 import { fontStyles, layoutStyles } from '../styles';
 
 const styles = Object.freeze({
@@ -34,20 +35,28 @@ const styles = Object.freeze({
   },
 });
 
-export default class ActivityDetail extends React.Component<{activities: Activity[]}, {}> {
+class ActivityDetail extends React.Component<{params: {id: string}}, {}> {
 
   render() {
-    const activity = {title: 'test', timesOccurred: 5};
+    const { params } = this.props;
+    //const activity = activities[params.id];
     return (
       <div style={styles.container}>
         <header style={styles.header}>
-          <h2 style={styles.heading}>{activity.title}</h2>
-          <div style={styles.occurredLabel}>
-            <span style={styles.timesOccurred}>{activity.timesOccurred}</span>
-            <span>Times of occurrence</span>
-          </div>
+          <h2 style={styles.heading}>{'activity.title'}</h2>
         </header>
+        <div style={styles.stackframe}>
+
+        </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    activities: state.activities,
+  };
+};
+
+export default connect(mapStateToProps)(ActivityDetail);

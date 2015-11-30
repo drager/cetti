@@ -13,7 +13,6 @@ import store from './store';
 import Main from './components/main';
 
 import Dashboard from './components/dashboard';
-import ActivityList from './components/activity-list';
 import ActivityDetail from './components/activity-detail';
 
 render(
@@ -21,9 +20,8 @@ render(
     <Provider store={store}>
       <Router>
         <Route path='/' component={Main}>
-          <Route path='stream' component={ActivityList} />
           <Route path='stream/:id' component={ActivityDetail} />
-          <Route path='dashboard' component={Dashboard} />
+          <Route path=':id' component={Dashboard} />
         </Route>
       </Router>
     </Provider>

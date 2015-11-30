@@ -20,7 +20,7 @@ type Properties = {
   children: JSX.Element,
 };
 
-export default class Main extends React.Component<Properties, any> {
+export class Main extends React.Component<Properties, any> {
 
   render() {
     return (

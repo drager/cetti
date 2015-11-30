@@ -1,8 +1,9 @@
 import { ActivityItem } from './activity-item';
 import * as React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import { actions } from '../redux/actions';
+import { dispatch, stateful } from '../redux/helpers';
 import {
   BucketCollection,
   DataPoint,
@@ -10,23 +11,26 @@ import {
   WidgetConfiguration,
 } from '../entites';
 
-import * as Actions from '../actions/activity';
 import { Widget } from './widget';
 
 type Properties = {
   grid: {cols: number, rows: number},
   configuration: WidgetConfiguration,
-  buckets?: BucketCollection,
   key?: any,
   markAsResolved?: (errorMessage: DataPoint<ErrorMessage>) => void,
 };
 
+type State = {
+  buckets?: BucketCollection,
+};
+
 type Data = ErrorMessage[];
 
-export class ErrorListWidget extends React.Component<Properties, {}> {
+@stateful(state => ({buckets: state.buckets}))
+export class ErrorListWidget extends React.Component<Properties, State> {
 
   getErrors(): DataPoint<ErrorMessage>[] {
-    let dataPoints = this.props.buckets[this.props.configuration.bucket];
+    let dataPoints = this.state.buckets[this.props.configuration.bucket];
 
     return dataPoints.filter(data => !data.value.resolved);
   }
@@ -38,8 +42,8 @@ export class ErrorListWidget extends React.Component<Properties, {}> {
         {this.getErrors().map((error) =>
           <div key={error.id}>
             <Link to={`/stream/${error.id}`}>
-              <ActivityItem activity={error}
-                            markAsResolved={this.props.markAsResolved}
+              <ActivityItem errorMessage={error}
+                            markAsResolved={this.markAsResolved.bind(this)}
                             />
             </Link>
           </div>
@@ -47,20 +51,11 @@ export class ErrorListWidget extends React.Component<Properties, {}> {
       </Widget>
     );
   }
+
+  private markAsResolved(errorMessage: DataPoint<ErrorMessage>) {
+    dispatch(actions.markAsResolved, {
+      id: errorMessage.id,
+      bucket: this.props.configuration.bucket,
+    });
+  }
 }
-
-const mapStateToProps = state => {
-  return {
-    buckets: state.buckets,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    markAsResolved: (activity) => {
-      dispatch(Actions.markAsResolved(activity));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ErrorListWidget);

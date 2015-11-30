@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 
+import { stateful } from '../redux/helpers';
 import {
   BucketCollection,
   NumberType,
@@ -11,17 +11,21 @@ import {
 import { Widget } from './widget';
 
 type Properties = {
-  grid: {cols: number, rows: number},
   configuration: WidgetConfiguration,
-  buckets?: BucketCollection,
+  grid: {cols: number, rows: number},
   key?: any,
+}
+
+type State = {
+  buckets?: BucketCollection,
 };
 
-export class NumberWidget extends React.Component<Properties, {}> {
+@stateful(state => ({buckets: state.buckets}))
+export class NumberWidget extends React.Component<Properties, State> {
 
   getData() {
     const configuration = this.props.configuration.typeConfiguration as NumberWidgetConfiguration;
-    let dataPoints = this.props.buckets[this.props.configuration.bucket];
+    let dataPoints = this.state.buckets[this.props.configuration.bucket];
 
     if (configuration.filter) {
         dataPoints = dataPoints.filter(configuration.filter);
@@ -47,11 +51,3 @@ export class NumberWidget extends React.Component<Properties, {}> {
     );
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    buckets: state.buckets,
-  };
-};
-
-export default connect(mapStateToProps)(NumberWidget);

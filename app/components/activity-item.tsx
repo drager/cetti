@@ -4,7 +4,7 @@ import * as Typography from 'material-ui/lib/styles/typography';
 import { Avatar, Card, CardHeader, FontIcon } from 'material-ui';
 
 import { DataPoint, ErrorMessage } from '../entites';
-import { layoutStyles } from '../styles';
+import { layoutStyles } from '../lib/styles';
 
 import { IconButton } from './icon-button';
 
@@ -27,26 +27,31 @@ const styles = Object.freeze({
 });
 
 type Properties = {
-  activity: DataPoint<ErrorMessage>,
-  markAsResolved: (activity: DataPoint<ErrorMessage>) => void,
+  errorMessage: DataPoint<ErrorMessage>,
+  markAsResolved: (errorMessage: DataPoint<ErrorMessage>) => void,
 }
 
 export class ActivityItem extends React.Component<Properties, {}> {
 
   render() {
-    const { activity } = this.props;
+    const { errorMessage } = this.props;
+
+    const dateFormat = new Intl.DateTimeFormat('sv-SE', {
+      year: 'numeric', month: 'numeric', day: 'numeric',
+      hour: 'numeric', minute: 'numeric', second: 'numeric',
+    });
 
     return (
-      <Card key={activity.id}>
+      <Card key={errorMessage.id}>
         <CardHeader style={styles.header}
-          title={activity.value.message}
-          subtitle={activity.timestamp.toLocaleString()}
+          title={errorMessage.value.message}
+          subtitle={dateFormat.format(new Date(errorMessage.timestamp))}
           avatar={<Avatar style={styles.avatar}>{1}</Avatar>}>
             <span style={layoutStyles.flex} />
             <IconButton hoverColor='transparent'
                         onClick={(e) => {
                           e.preventDefault();
-                          this.props.markAsResolved(activity);
+                          this.props.markAsResolved(errorMessage);
                         }}>
               <FontIcon className='material-icons' style={styles.doneIcon}>done</FontIcon>
             </IconButton>

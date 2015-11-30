@@ -5,7 +5,7 @@ import {
   DashboardsConfiguration,
   NumberType,
   WidgetType,
-} from './entites';
+} from '../entites';
 
 const initialState = {
   dashboards: {

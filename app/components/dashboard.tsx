@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import * as Colors from 'material-ui/lib/styles/colors';
 
+import { stateful } from '../redux/helpers';
 import {
   DashboardsConfiguration,
   WidgetConfiguration,
   WidgetType,
 } from '../entites';
 
-import ChartWidget from './chart-widget';
-import ErrorListWidget from './error-list-widget';
-import NumberWidget from './number-widget';
+import { ChartWidget } from './chart-widget';
+import { ErrorListWidget } from './error-list-widget';
+import { NumberWidget } from './number-widget';
 
 const styles = Object.freeze({
   container: {
@@ -26,15 +26,19 @@ const type = {
   [WidgetType.number]: NumberWidget,
 };
 
-type Properties = {
+type State = {
   dashboards: DashboardsConfiguration,
+}
+
+type Properties = {
   params: {id: string}
 }
 
-export class Dashboard extends React.Component<Properties, {}> {
+@stateful(state => ({dashboards: state.dashboards}))
+export class Dashboard extends React.Component<Properties, State> {
 
   render() {
-    const configuration = this.props.dashboards[this.props.params.id];
+    const configuration = this.state.dashboards[this.props.params.id];
     const { grid, widgets } = configuration;
 
     return (
@@ -54,11 +58,3 @@ export class Dashboard extends React.Component<Properties, {}> {
     return <WidgetComponent configuration={widget} grid={grid} key={key} />;
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    dashboards: state.dashboards,
-  };
-};
-
-export default connect(mapStateToProps)(Dashboard);

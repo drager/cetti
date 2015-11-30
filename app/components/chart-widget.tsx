@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 
+import { stateful } from '../redux/helpers';
 import {
   BucketCollection,
   AxisConfiguration,
@@ -16,9 +16,14 @@ import { Widget } from './widget';
 type Properties = {
   grid: {cols: number, rows: number},
   configuration: WidgetConfiguration,
-  buckets?: BucketCollection,
   key?: any,
 };
+
+type State = {
+  buckets?: BucketCollection,
+  width: number,
+  height: number
+}
 
 type MinMax = {
   min: number,
@@ -37,7 +42,8 @@ type Data = {
 const padding = 10;
 const axisWidth = 50;
 
-export class ChartWidget extends React.Component<Properties, {width: number, height: number}> {
+@stateful(state => ({buckets: state.buckets}))
+export class ChartWidget extends React.Component<Properties, State> {
 
   getConfiguration() {
     return this.props.configuration.typeConfiguration as ChartWidgetConfiguration;
@@ -58,7 +64,7 @@ export class ChartWidget extends React.Component<Properties, {width: number, hei
 
   getData(): Data {
     const configuration = this.props.configuration.typeConfiguration as ChartWidgetConfiguration;
-    let dataPoints = this.props.buckets[this.props.configuration.bucket];
+    let dataPoints = this.state.buckets[this.props.configuration.bucket];
 
     const fixAxis = (axis: AxisConfiguration) => {
       switch (axis.type) {
@@ -197,11 +203,3 @@ export class ChartWidget extends React.Component<Properties, {width: number, hei
     }
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    buckets: state.buckets,
-  };
-};
-
-export default connect(mapStateToProps)(ChartWidget);

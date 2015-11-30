@@ -1,14 +1,25 @@
-export interface Activity {
-  id: number;
-  title: string;
-  timesOccurred: number;
-  timeOfOccurence: string;
-  // TODO(Jesper): Maybe do something different here, maybe we do not want
-  // Every activity to have an resolved as well as stackframe.
-  // This will have to due for the moment when we only handles "errors".
-  // Maybe we want another interface...
-  resolved: boolean;
+export interface Log {
   message: string;
+  attachments: any[];
+  level: Level;
+}
+
+export enum Level {
+  debug,
+  config,
+  info,
+  warning,
+  severe,
+  fatal,
+}
+
+export interface ErrorMessage {
+  message: string;
+  resolved: boolean;
+  catched: boolean;
+  lineNumber: number;
+  colNumber: number;
+  fileName: string;
   stacktrace: StackFrame[];
 }
 
@@ -18,17 +29,20 @@ export interface StackFrame {
   fileName: string;
   lineNumber: number;
   columnNumber: number;
-  source: string;
-  stacktrace: any;
 }
 
-export interface DataPoint {
+export interface DataPoint<T> {
+  id?: string;
   timestamp: number;
-  value: any;
+  value: T;
 }
 
 export interface BucketCollection {
-  [bucket: string]: DataPoint[];
+  [bucket: string]: DataPoint<any>[];
+}
+
+export interface DashboardsConfiguration {
+  [id: string]: DashboardConfiguration;
 }
 
 export interface DashboardConfiguration {
@@ -49,12 +63,12 @@ export interface WidgetConfiguration {
   type: WidgetType;
   title: string;
   bucket: string;
-  typeConfiguration: NumberWidgetConfiguration | ChartWidgetConfiguration;
+  typeConfiguration?: NumberWidgetConfiguration | ChartWidgetConfiguration;
 }
 
 export interface NumberWidgetConfiguration {
   type: NumberType;
-  filter?: (dataPoint: DataPoint) => boolean;
+  filter?: (dataPoint: DataPoint<any>) => boolean;
 }
 
 export interface ChartWidgetConfiguration {
@@ -119,5 +133,6 @@ export enum ChartType {
 
 export enum WidgetType {
   chart,
+  errorList,
   number,
 }

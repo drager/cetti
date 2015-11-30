@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-import { Activity } from '../entites';
-
 import { NavBar } from './nav-bar';
 
 const styles = Object.freeze({
@@ -19,7 +17,6 @@ const styles = Object.freeze({
 });
 
 type Properties = {
-  activities: Activity[],
   children: JSX.Element,
 };
 

@@ -1,11 +1,11 @@
 var path = require('path');
 var config = {
   entry: {
-    javascript: __dirname + '/app/index',
-    html: __dirname + '/app/index.html'
+    javascript: ['babel-polyfill', './app/index'],
+    html: './app/index.html'
   },
   output: {
-    path: __dirname + '/dist',
+    path: './dist',
     filename: 'app.js',
   },
   module: {
@@ -16,7 +16,7 @@ var config = {
         loaders: [
           'react-hot',
           'babel?' + JSON.stringify({
-            presets: ['react', 'es2015', 'stage-1'],
+            presets: ['react', 'es2015', 'stage-0'],
           }),
           'ts',
        ],

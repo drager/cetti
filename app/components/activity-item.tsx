@@ -3,7 +3,7 @@ import * as Colors from 'material-ui/lib/styles/colors';
 import * as Typography from 'material-ui/lib/styles/typography';
 import { Avatar, Card, CardHeader, FontIcon } from 'material-ui';
 
-import { Activity } from '../entites';
+import { DataPoint, ErrorMessage } from '../entites';
 import { layoutStyles } from '../styles';
 
 import { IconButton } from './icon-button';
@@ -13,6 +13,7 @@ const styles = Object.freeze({
     backgroundColor: Colors.red500,
     color: Colors.fullWhite,
     fontWeight: Typography.fontWeightLight,
+    flexShrink: 0,
   },
   doneIcon: {
     fontSize: 32,
@@ -26,8 +27,8 @@ const styles = Object.freeze({
 });
 
 type Properties = {
-  activity: Activity,
-  markAsResolved: (activity: Activity) => void,
+  activity: DataPoint<ErrorMessage>,
+  markAsResolved: (activity: DataPoint<ErrorMessage>) => void,
 }
 
 export class ActivityItem extends React.Component<Properties, {}> {
@@ -38,9 +39,9 @@ export class ActivityItem extends React.Component<Properties, {}> {
     return (
       <Card key={activity.id}>
         <CardHeader style={styles.header}
-          title={activity.title}
-          subtitle={activity.timeOfOccurence}
-          avatar={<Avatar style={styles.avatar}>{activity.timesOccurred}</Avatar>}>
+          title={activity.value.message}
+          subtitle={activity.timestamp.toLocaleString()}
+          avatar={<Avatar style={styles.avatar}>{1}</Avatar>}>
             <span style={layoutStyles.flex} />
             <IconButton hoverColor='transparent'
                         onClick={(e) => {

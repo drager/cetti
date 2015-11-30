@@ -36,7 +36,7 @@ export class ActivityItem extends React.Component<Properties, {}> {
   render() {
     const { activity } = this.props;
 
-    const format = new Intl.DateTimeFormat('sv-SE', {
+    const dateFormat = new Intl.DateTimeFormat('sv-SE', {
       year: 'numeric', month: 'numeric', day: 'numeric',
       hour: 'numeric', minute: 'numeric', second: 'numeric',
     });
@@ -45,7 +45,7 @@ export class ActivityItem extends React.Component<Properties, {}> {
       <Card key={activity.id}>
         <CardHeader style={styles.header}
           title={activity.value.message}
-          subtitle={format.format(new Date(activity.timestamp))}
+          subtitle={dateFormat.format(new Date(activity.timestamp))}
           avatar={<Avatar style={styles.avatar}>{1}</Avatar>}>
             <span style={layoutStyles.flex} />
             <IconButton hoverColor='transparent'

@@ -1,6 +1,4 @@
-import { ActivityItem } from './activity-item';
 import * as React from 'react';
-import { Link } from 'react-router';
 
 import { actions } from '../redux/actions';
 import { dispatch, stateful } from '../redux/helpers';
@@ -11,13 +9,20 @@ import {
   WidgetConfiguration,
 } from '../entites';
 
+import { ErrorListItem } from './error-list-item';
 import { Widget } from './widget';
+
+const styles = Object.freeze({
+  container: {
+    paddingTop: 8,
+    paddingLeft: 8,
+  },
+});
 
 type Properties = {
   grid: {cols: number, rows: number},
   configuration: WidgetConfiguration,
   key?: any,
-  markAsResolved?: (errorMessage: DataPoint<ErrorMessage>) => void,
 };
 
 type State = {
@@ -37,15 +42,13 @@ export class ErrorListWidget extends React.Component<Properties, State> {
 
   render() {
     const { configuration, grid } = this.props;
+
     return (
       <Widget grid={grid} configuration={configuration}>
         {this.getErrors().map((error) =>
-          <div key={error.id}>
-            <Link to={`/stream/${error.id}`}>
-              <ActivityItem errorMessage={error}
-                            markAsResolved={this.markAsResolved.bind(this)}
-                            />
-            </Link>
+          <div key={error.id} style={styles.container}>
+            <ErrorListItem error={error} occerences={2}
+                           markAsResolved={this.markAsResolved.bind(this)} />
           </div>
         )}
       </Widget>

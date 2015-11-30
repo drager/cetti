@@ -46,6 +46,7 @@ export interface DashboardsConfiguration {
 }
 
 export interface DashboardConfiguration {
+  name: string;
   grid: {
     rows: number;
     cols: number;
@@ -61,7 +62,7 @@ export interface WidgetConfiguration {
     height: number;
   };
   type: WidgetType;
-  title: string;
+  title?: string;
   bucket: string;
   typeConfiguration?: NumberWidgetConfiguration | ChartWidgetConfiguration;
 }

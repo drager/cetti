@@ -10,6 +10,7 @@ import {
 const initialState = {
   dashboards: {
     dashboard: {
+      name: 'Dashboard',
       grid: {
         cols: 4,
         rows: 5,
@@ -23,7 +24,7 @@ const initialState = {
             height: 1,
           },
           type: WidgetType.number,
-          title: 'last',
+          title: 'Last',
           bucket: 'last',
           typeConfiguration: {
             type: NumberType.last,
@@ -37,7 +38,7 @@ const initialState = {
             height: 1,
           },
           type: WidgetType.number,
-          title: 'count',
+          title: 'Count',
           bucket: 'count',
           typeConfiguration: {
             type: NumberType.count,
@@ -52,7 +53,7 @@ const initialState = {
             height: 1,
           },
           type: WidgetType.number,
-          title: 'sum',
+          title: 'Sum',
           bucket: 'sum',
           typeConfiguration: {
             type: NumberType.sum,
@@ -93,9 +94,21 @@ const initialState = {
             yAxis: {type: AxisType.value},
           },
         },
+        {
+          placement: {
+            x: 0,
+            y: 3,
+            width: 3,
+            height: 2,
+          },
+          type: WidgetType.errorList,
+          title: 'Errors',
+          bucket: 'error',
+        },
       ],
     },
     errors: {
+      name: 'Errors',
       grid: {
         cols: 1,
         rows: 1,
@@ -226,6 +239,7 @@ const initialState = {
         value: {
           message: `./app/components/card-list.tsx(54,43): error TS1005: ':' expected.`,
           resolved: false,
+          catched: true,
           stacktrace: [],
         },
       },

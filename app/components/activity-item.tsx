@@ -27,14 +27,14 @@ const styles = Object.freeze({
 });
 
 type Properties = {
-  activity: DataPoint<ErrorMessage>,
-  markAsResolved: (activity: DataPoint<ErrorMessage>) => void,
+  errorMessage: DataPoint<ErrorMessage>,
+  markAsResolved: (errorMessage: DataPoint<ErrorMessage>) => void,
 }
 
 export class ActivityItem extends React.Component<Properties, {}> {
 
   render() {
-    const { activity } = this.props;
+    const { errorMessage } = this.props;
 
     const dateFormat = new Intl.DateTimeFormat('sv-SE', {
       year: 'numeric', month: 'numeric', day: 'numeric',
@@ -42,16 +42,16 @@ export class ActivityItem extends React.Component<Properties, {}> {
     });
 
     return (
-      <Card key={activity.id}>
+      <Card key={errorMessage.id}>
         <CardHeader style={styles.header}
-          title={activity.value.message}
-          subtitle={dateFormat.format(new Date(activity.timestamp))}
+          title={errorMessage.value.message}
+          subtitle={dateFormat.format(new Date(errorMessage.timestamp))}
           avatar={<Avatar style={styles.avatar}>{1}</Avatar>}>
             <span style={layoutStyles.flex} />
             <IconButton hoverColor='transparent'
                         onClick={(e) => {
                           e.preventDefault();
-                          this.props.markAsResolved(activity);
+                          this.props.markAsResolved(errorMessage);
                         }}>
               <FontIcon className='material-icons' style={styles.doneIcon}>done</FontIcon>
             </IconButton>

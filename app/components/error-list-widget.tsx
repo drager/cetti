@@ -2,7 +2,8 @@ import { ActivityItem } from './activity-item';
 import * as React from 'react';
 import { Link } from 'react-router';
 
-import { stateful } from '../redux/helpers';
+import { actions } from '../redux/actions';
+import { dispatch, stateful } from '../redux/helpers';
 import {
   BucketCollection,
   DataPoint,
@@ -29,7 +30,6 @@ type Data = ErrorMessage[];
 export class ErrorListWidget extends React.Component<Properties, State> {
 
   getErrors(): DataPoint<ErrorMessage>[] {
-    console.log(this.state);
     let dataPoints = this.state.buckets[this.props.configuration.bucket];
 
     return dataPoints.filter(data => !data.value.resolved);
@@ -42,13 +42,20 @@ export class ErrorListWidget extends React.Component<Properties, State> {
         {this.getErrors().map((error) =>
           <div key={error.id}>
             <Link to={`/stream/${error.id}`}>
-              <ActivityItem activity={error}
-                            markAsResolved={this.props.markAsResolved}
+              <ActivityItem errorMessage={error}
+                            markAsResolved={this.markAsResolved.bind(this)}
                             />
             </Link>
           </div>
         )}
       </Widget>
     );
+  }
+
+  private markAsResolved(errorMessage: DataPoint<ErrorMessage>) {
+    dispatch(actions.markAsResolved, {
+      id: errorMessage.id,
+      bucket: this.props.configuration.bucket,
+    });
   }
 }

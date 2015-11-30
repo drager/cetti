@@ -36,15 +36,15 @@ interface Class<T> {
 }
 
 export function createActions<T>(actionDefinitions: Class<T>): T {
- return Object.freeze(
-   Object.keys(actionDefinitions).reduce((actions, type) => {
-     let actionDefinition = actionDefinitions[type];
+  const actionDef = new actionDefinitions();
+  return Object.freeze(
+    Object.keys(actionDef).reduce((actions, type) => {
+      let actionDefinition = actionDef[type];
 
-     actions[type] = Object.create(actionDefinition);
-     actions[type].type = type;
-     return actions;
-   }, new actionDefinitions())
- );
+      actions[type] = Object.create(actionDefinition);
+      actions[type].type = type;
+      return actions;
+   }, actionDef));
 }
 
 export interface Action<T extends {}> {

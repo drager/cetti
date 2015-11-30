@@ -7,7 +7,7 @@ import {
   BucketCollection,
   DataPoint,
   ErrorMessage,
-  WidgetConfiguration
+  WidgetConfiguration,
 } from '../entites';
 
 import * as Actions from '../actions/activity';

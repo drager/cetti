@@ -2,7 +2,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import * as Colors from 'material-ui/lib/styles/colors';
 
-import { DashboardConfiguration, DashboardsConfiguration, WidgetConfiguration, WidgetType } from '../entites';
+import {
+  DashboardsConfiguration,
+  WidgetConfiguration,
+  WidgetType,
+} from '../entites';
 
 import ChartWidget from './chart-widget';
 import ErrorListWidget from './error-list-widget';
@@ -20,9 +24,14 @@ const type = {
   [WidgetType.chart]: ChartWidget,
   [WidgetType.errorList]: ErrorListWidget,
   [WidgetType.number]: NumberWidget,
+};
+
+type Properties = {
+  dashboards: DashboardsConfiguration,
+  params: {id: string}
 }
 
-export class Dashboard extends React.Component<{dashboards: DashboardsConfiguration, params: {id: string}}, {}> {
+export class Dashboard extends React.Component<Properties, {}> {
 
   render() {
     const configuration = this.props.dashboards[this.props.params.id];

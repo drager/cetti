@@ -3,7 +3,6 @@ import * as Colors from 'material-ui/lib/styles/colors';
 import * as Typography from 'material-ui/lib/styles/typography';
 import { connect } from 'react-redux';
 
-//import { Activity } from '../entites';
 import { fontStyles, layoutStyles } from '../styles';
 
 const styles = Object.freeze({
@@ -38,8 +37,6 @@ const styles = Object.freeze({
 class ActivityDetail extends React.Component<{params: {id: string}}, {}> {
 
   render() {
-    const { params } = this.props;
-    //const activity = activities[params.id];
     return (
       <div style={styles.container}>
         <header style={styles.header}>

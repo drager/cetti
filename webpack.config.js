@@ -19,12 +19,16 @@ var config = {
             presets: ['react', 'es2015', 'stage-0'],
           }),
           'ts',
-       ],
-     },
-     {
+        ],
+      },
+      {
         test: /\.html$/,
         loader: 'file?name=[name].[ext]',
-      }
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css',
+      },
     ]
   },
   resolve: {

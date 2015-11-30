@@ -1,3 +1,4 @@
+import * as Colors from 'material-ui/lib/styles/colors';
 import * as React from 'react';
 
 import { stateful } from '../redux/helpers';
@@ -53,13 +54,21 @@ export class ChartWidget extends React.Component<Properties, State> {
     super(props);
 
     this.state = {width: 0, height: 0};
+    // Binding this becouse the method will be used as a callback
+    this.measureSize = this.measureSize.bind(this);
   }
 
   componentDidMount() {
-    this.setState({
-      width: (this.refs as any).svg.offsetWidth,
-      height: (this.refs as any).svg.offsetHeight,
+    this.measureSize(() => {
+      if (!this.state.width || !this.state.height) {
+        setTimeout(this.measureSize, 1);
+      }
     });
+    window.addEventListener('resize', this.measureSize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.measureSize);
   }
 
   getData(): Data {
@@ -110,13 +119,23 @@ export class ChartWidget extends React.Component<Properties, State> {
 
     return (
       <Widget grid={grid} configuration={configuration}>
-        <h3>{configuration.title}</h3>
-        <span>{}</span>
         <svg width='100%' height='100%' ref='svg'>
           {this.renderChart()}
         </svg>
       </Widget>
     );
+  }
+
+  private measureSize(callback?) {
+    if (this.refs['svg']) {
+      const rect = this.refs['svg']['getBoundingClientRect']();
+      this.setState({
+        width: rect.width,
+        height: rect.height,
+      }, typeof callback === 'function' ? callback : undefined);
+    } else if (typeof callback === 'function') {
+      setTimeout(callback, 1);
+    }
   }
 
   private renderChart() {
@@ -126,10 +145,12 @@ export class ChartWidget extends React.Component<Properties, State> {
       return;
     }
 
-    return <g>
-      {this.renderAxis(data.y)}
-      {this.renderDiagram(data)}
-    </g>;
+    return (
+      <g>
+        {this.renderAxis(data.y)}
+        {this.renderDiagram(data)}
+      </g>
+    );
   }
 
   private renderAxis({min, length}: MinMax) {
@@ -150,10 +171,13 @@ export class ChartWidget extends React.Component<Properties, State> {
       });
     }
 
-    return <g>
-      {labels.map((label, index) =>
-          <text x={label.x} y={label.y} textAnchor='end' key={index}>{label.text}</text>)}
-    </g>;
+    return (
+      <g>
+        {labels.map((label, index) =>
+            <text x={label.x} y={label.y} textAnchor='end' key={index}
+                  fill='rgba(0, 0, 0, 0.54)'>{label.text}</text>)}
+      </g>
+    );
   }
 
   private renderDiagram(data: Data): JSX.Element | JSX.Element[] {
@@ -164,14 +188,13 @@ export class ChartWidget extends React.Component<Properties, State> {
 
     switch (data.type) {
       case ChartType.bar:
-
         return data.points.map((point, index) => {
           const width = 0.5 * xScale;
           xScale = (diagramWidth - width) / data.x.length;
           const height = (point.y - data.y.min) * yScale;
 
           return <rect x={point.x * xScale + axisWidth} y={diagramHeight + padding - height}
-                       width={width} height={height} key={index} />;
+                       width={width} height={height} key={index} fill={Colors.teal400} />;
         });
 
       case ChartType.line:
@@ -196,8 +219,9 @@ export class ChartWidget extends React.Component<Properties, State> {
           line += ` L ${stop(points[points.length - 1].x, data.y.min)}`;
         }
 
-        return <path d={line} strokeWidth={3} stroke='black'
-                     fill={this.getConfiguration().fill ? 'green' : 'none'} />;
+        return this.getConfiguration().fill
+          ? <path d={line} stroke='none' fill={Colors.teal300} />
+          : <path d={line} strokeWidth={3} stroke={Colors.teal500} fill='none' />;
 
       default: throw new Error('Invalid chart type');
     }

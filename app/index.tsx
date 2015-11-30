@@ -11,6 +11,9 @@ import { Main } from './components/main';
 import { Dashboard } from './components/dashboard';
 import { ActivityDetail } from './components/activity-detail';
 
+require('react-mdl/extra/material.css');
+require('react-mdl/extra/material.js');
+
 render(
   (
     <Router>

@@ -15,6 +15,7 @@ import { NumberWidget } from './number-widget';
 const styles = Object.freeze({
   container: {
     position: 'relative',
+    margin: 4,
     flex: 1,
     backgroundColor: Colors.lightWhite,
   },

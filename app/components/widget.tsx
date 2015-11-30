@@ -1,12 +1,18 @@
 import * as React from 'react';
-import * as Colors from 'material-ui/lib/styles/colors';
+import { Card } from 'react-mdl';
 
 import { WidgetConfiguration } from '../entites';
 
+const padding = 16;
 const styles = Object.freeze({
   widget: {
     position: 'absolute',
-    backgroundColor: Colors.fullWhite,
+    minHeight: 0,
+  },
+  title: {
+    margin: 0,
+    padding: 16,
+    color: 'rgba(0, 0, 0, 0.7)',
   },
 });
 
@@ -19,18 +25,19 @@ type Properties = {
 export class Widget extends React.Component<Properties, {}> {
 
   render() {
-    const { grid } = this.props;
-    const { placement } = this.props.configuration;
+    const { children, grid } = this.props;
+    const { placement, title } = this.props.configuration;
 
-    const top = (placement.y / grid.rows * 100) + '%';
-    const left = (placement.x / grid.cols * 100) + '%';
-    const width = (placement.width / grid.cols * 100) + '%';
-    const height = (placement.height / grid.rows * 100) + '%';
+    const top = `calc(${placement.y / grid.rows * 100}% + ${padding / 2}px)`;
+    const left = `calc(${placement.x / grid.cols * 100}% + ${padding / 2}px)`;
+    const width = `calc(${placement.width / grid.cols * 100}% - ${padding}px)`;
+    const height = `calc(${placement.height / grid.rows * 100}% - ${padding}px)`;
 
     return (
-      <div style={Object.assign({top, left, width, height}, styles.widget)}>
-        {this.props.children}
-      </div>
+      <Card shadow={0} style={Object.assign({top, left, width, height}, styles.widget)}>
+        {title && <h3 style={styles.title}>{title}</h3>}
+        {children}
+      </Card>
     );
   }
 }

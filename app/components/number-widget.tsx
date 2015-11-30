@@ -1,3 +1,4 @@
+import * as Colors from 'material-ui/lib/styles/colors';
 import * as React from 'react';
 
 import { stateful } from '../redux/helpers';
@@ -9,6 +10,19 @@ import {
 } from '../entites';
 
 import { Widget } from './widget';
+
+const styles = Object.freeze({
+  number: {
+    position: 'absolute',
+    right: 24,
+    bottom: -4,
+    margin: 0,
+
+    color: Colors.teal500,
+
+    fontSize: 72,
+  },
+});
 
 type Properties = {
   configuration: WidgetConfiguration,
@@ -45,8 +59,7 @@ export class NumberWidget extends React.Component<Properties, State> {
 
     return (
       <Widget grid={grid} configuration={configuration}>
-        <h3>{configuration.title}</h3>
-        <span>{this.getData()}</span>
+        <h1 style={styles.number}>{this.getData()}</h1>
       </Widget>
     );
   }

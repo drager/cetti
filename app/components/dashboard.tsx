@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as Colors from 'material-ui/lib/styles/colors';
 
-import { stateful } from '../redux/helpers';
 import {
   DashboardsConfiguration,
   WidgetConfiguration,
   WidgetType,
-} from '../entites';
+} from '../lib/entites';
+import { stateful } from '../redux/helpers';
 
 import { ChartWidget } from './chart-widget';
 import { ErrorListWidget } from './error-list-widget';

@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import { actions } from '../redux/actions';
-import { dispatch, stateful } from '../redux/helpers';
 import {
   BucketCollection,
   DataPoint,
   ErrorMessage,
   WidgetConfiguration,
-} from '../entites';
+} from '../lib/entites';
+import { actions } from '../redux/actions';
+import { dispatch, stateful } from '../redux/helpers';
 
 import { ErrorListItem } from './error-list-item';
 import { Widget } from './widget';

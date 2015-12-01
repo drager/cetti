@@ -4,8 +4,8 @@ import * as React from 'react';
 import { Layout, Content, Drawer, Navigation } from 'react-mdl';
 import { Link as RouterLink } from 'react-router';
 
+import { DashboardsConfiguration } from '../lib/entites';
 import { stateful } from '../redux/helpers';
-import { DashboardsConfiguration } from '../entites';
 
 const Link = radium(RouterLink);
 

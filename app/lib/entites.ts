@@ -33,8 +33,14 @@ export interface StackFrame {
 
 export interface DataPoint<T> {
   id?: string;
+  sessionId?: string;
   timestamp: number;
   value: T;
+}
+
+export interface PushData {
+  bucketName: string;
+  dataPoint: DataPoint<any>;
 }
 
 export interface BucketCollection {
@@ -46,6 +52,7 @@ export interface DashboardsConfiguration {
 }
 
 export interface DashboardConfiguration {
+  name: string;
   grid: {
     rows: number;
     cols: number;
@@ -68,6 +75,7 @@ export interface WidgetConfiguration {
 
 export interface NumberWidgetConfiguration {
   type: NumberType;
+  unit?: string;
   filter?: (dataPoint: DataPoint<any>) => boolean;
 }
 

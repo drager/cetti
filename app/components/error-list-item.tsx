@@ -3,7 +3,7 @@ import * as Colors from 'material-ui/lib/styles/colors';
 import * as Typography from 'material-ui/lib/styles/typography';
 import { Card, IconButton } from 'react-mdl';
 
-import { DataPoint, ErrorMessage } from '../entites';
+import { DataPoint, ErrorMessage } from '../lib/entites';
 
 const styles = Object.freeze({
   container: {

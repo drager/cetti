@@ -70,6 +70,11 @@ export class ErrorListItem extends React.Component<Properties, {}> {
   render() {
     const { error, markAsResolved, occerences } = this.props;
 
+    const dateFormat = new Intl.DateTimeFormat('sv-SE', {
+      year: 'numeric', month: 'numeric', day: 'numeric',
+      hour: 'numeric', minute: 'numeric', second: 'numeric',
+    });
+
     return (
       <Card key={error.id} style={styles.container}>
         <div style={styles.count}>
@@ -77,7 +82,7 @@ export class ErrorListItem extends React.Component<Properties, {}> {
         </div>
         <div style={styles.text}>
           <h5 style={styles.header}>{error.value.message}</h5>
-          <span style={styles.date}>{error.timestamp.toLocaleString()}</span>
+          <span style={styles.date}>{dateFormat.format(new Date(error.timestamp))}</span>
           {!error.value.catched && (
             <span style={styles.warning}> - <span>Uncaught Exception</span></span>)}
         </div>

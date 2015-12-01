@@ -71,6 +71,10 @@ export interface WidgetConfiguration {
   title: string;
   bucket: string;
   typeConfiguration?: NumberWidgetConfiguration | ChartWidgetConfiguration;
+  /**
+   * A link to another dashboard that should be opened when the widget is clicked
+   */
+  dashboard?: string;
 }
 
 export interface NumberWidgetConfiguration {

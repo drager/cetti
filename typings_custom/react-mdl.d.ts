@@ -11,6 +11,7 @@ declare module 'react-mdl' {
 
   interface CardProperties extends Properties {
     shadow?: number;
+    onClick?: (event: MouseEvent) => void;
   }
 
   interface DrawerProperties extends Properties {
@@ -20,7 +21,7 @@ declare module 'react-mdl' {
   interface IconButtonProperties extends Properties {
     colored?: boolean;
     name: string;
-    onClick?: Function;
+    onClick?: (event: MouseEvent) => void;
   }
 
   interface LayoutProperties extends Properties {

@@ -105,6 +105,7 @@ const initialState = {
           type: WidgetType.errorList,
           title: 'Errors',
           bucket: 'error',
+          dashboard: 'errors',
         },
       ],
     },

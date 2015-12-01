@@ -1,7 +1,6 @@
 import * as Colors from 'material-ui/lib/styles/colors';
 import * as React from 'react';
 
-import { stateful } from '../redux/helpers';
 import {
   BucketCollection,
   AxisConfiguration,
@@ -9,7 +8,8 @@ import {
   ChartType,
   ChartWidgetConfiguration,
   WidgetConfiguration,
-} from '../entites';
+} from '../lib/entites';
+import { stateful } from '../redux/helpers';
 
 import { catmullRomSpline } from '../lib/catmull-rom-spline';
 import { Widget } from './widget';

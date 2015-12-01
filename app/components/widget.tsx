@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Card } from 'react-mdl';
 
-import { WidgetConfiguration } from '../entites';
+import { WidgetConfiguration } from '../lib/entites';
 
 const padding = 16;
 const styles = Object.freeze({

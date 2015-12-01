@@ -5,7 +5,7 @@ import {
   DashboardsConfiguration,
   NumberType,
   WidgetType,
-} from '../entites';
+} from '../lib/entites';
 
 const initialState = {
   dashboards: {
@@ -24,10 +24,11 @@ const initialState = {
             height: 1,
           },
           type: WidgetType.number,
-          title: 'Last',
-          bucket: 'last',
+          title: 'Download Time',
+          bucket: 'downloadTime',
           typeConfiguration: {
             type: NumberType.last,
+            unit: 'ms',
           },
         },
         {
@@ -38,11 +39,11 @@ const initialState = {
             height: 1,
           },
           type: WidgetType.number,
-          title: 'Count',
-          bucket: 'count',
+          title: 'Render Time',
+          bucket: 'renderTime',
           typeConfiguration: {
-            type: NumberType.count,
-            filter: (data) => data.value === 5,
+            type: NumberType.last,
+            unit: 'ms',
           },
         },
         {

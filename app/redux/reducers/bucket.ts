@@ -12,4 +12,14 @@ export const buckets = createReducer<BucketState>(initialState.buckets)
 
     return updateIn([bucket, errorIndex, 'value', 'resolved'], true, state);
   })
+  .when(actions.addData, (state, {data}) => {
+    for (const {bucketName, dataPoint} of data) {
+      if (!state[bucketName]) {
+        state = updateIn([bucketName], [dataPoint], state);
+      } else {
+        state = updateIn([bucketName], [...state[bucketName], dataPoint], state);
+      }
+    }
+    return state;
+  })
   .build();

@@ -10,6 +10,7 @@ import { Router, Route } from 'react-router';
 import { Main } from './components/main';
 import { Dashboard } from './components/dashboard';
 import { ActivityDetail } from './components/activity-detail';
+import { Cetti } from './client';
 
 require('react-mdl/extra/material.css');
 require('react-mdl/extra/material.js');
@@ -25,3 +26,5 @@ render(
   ),
   document.getElementById('app')
 );
+
+new Cetti();

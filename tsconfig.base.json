@@ -13,7 +13,8 @@
         "*.ts",
         "app/**/*.tsx",
         "app/**/*.ts",
-        "typings/*.ts"
+        "typings/*.ts",
+        "typings/react-router/history.d.ts"
     ],
     "files": [],
     "formatCodeOptions": {

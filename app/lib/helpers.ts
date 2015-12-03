@@ -13,3 +13,20 @@ export function updateIn(path: Array<string|number>, newValue, object) {
 
   return clone;
 }
+
+export function classNames(...names: string[]) {
+  return names.filter(name => !!name).join(' ');
+}
+
+const dateFormat = new Intl.DateTimeFormat('sv-SE', {
+  year: 'numeric', month: 'numeric', day: 'numeric',
+  hour: 'numeric', minute: 'numeric', second: 'numeric',
+});
+
+export function formatDate(timestamp: number) {
+  return dateFormat.format(new Date(timestamp));
+}
+
+export function isoDate(timestamp: number) {
+  return new Date(timestamp).toISOString();
+}

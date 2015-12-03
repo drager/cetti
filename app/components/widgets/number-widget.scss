@@ -1,0 +1,36 @@
+@import '../../style/definitions';
+
+.container {
+  display: flex;
+  position: absolute;
+  right: 8px;
+  bottom: 0;
+  align-items: flex-end;
+
+  padding-left: 16px;
+  overflow: hidden;
+}
+
+.number {
+  position: relative;
+  right: 16px;
+  bottom: -4px;
+  margin: 0;
+
+  color: $teal-500;
+
+  font-size: 72px;
+
+  &.small {
+    bottom: 4px;
+    font-size: 54px;
+  }
+}
+
+.unit {
+  margin: 0;
+  margin-left: -8px;
+  margin-bottom: 12px;
+
+  color: $light-black;
+}

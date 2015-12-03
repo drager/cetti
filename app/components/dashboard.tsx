@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as Colors from 'material-ui/lib/styles/colors';
 
 import {
   DashboardsConfiguration,
@@ -8,18 +7,11 @@ import {
 } from '../lib/entites';
 import { stateful } from '../redux/helpers';
 
-import { ChartWidget } from './chart-widget';
-import { ErrorListWidget } from './error-list-widget';
-import { NumberWidget } from './number-widget';
+import { ChartWidget } from './widgets/chart-widget';
+import { ErrorListWidget } from './widgets/error-list-widget';
+import { NumberWidget } from './widgets/number-widget';
 
-const styles = Object.freeze({
-  container: {
-    position: 'relative',
-    margin: 4,
-    flex: 1,
-    backgroundColor: Colors.lightWhite,
-  },
-});
+const styles = require('./dashboard.scss');
 
 const type = {
   [WidgetType.chart]: ChartWidget,
@@ -43,7 +35,7 @@ export class Dashboard extends React.Component<Properties, State> {
     const { grid, widgets } = configuration;
 
     return (
-      <div style={styles.container}>
+      <div className={styles.container}>
         {widgets.map(this.renderWidget.bind(this, grid))}
       </div>
     );

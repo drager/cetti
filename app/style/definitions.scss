@@ -1,0 +1,54 @@
+@import '~material-design-lite/src/color-definitions';
+
+$cyan-300: unquote('rgb(#{$palette-cyan-300})');
+$cyan-400: unquote('rgb(#{$palette-cyan-400})');
+$cyan-500: unquote('rgb(#{$palette-cyan-500})');
+$cyan-700: unquote('rgb(#{$palette-cyan-700})');
+$green-500: unquote('rgb(#{$palette-green-500})');
+$grey-100: unquote('rgb(#{$palette-grey-100})');
+$red-500: unquote('rgb(#{$palette-red-500})');
+$teal-300: unquote('rgb(#{$palette-teal-300})');
+$teal-400: unquote('rgb(#{$palette-teal-400})');
+$teal-500: unquote('rgb(#{$palette-teal-500})');
+$teal-700: unquote('rgb(#{$palette-teal-700})');
+$teal-A200: unquote('rgb(#{$palette-teal-A200})');
+$blue-grey-700: unquote('rgb(#{$palette-blue-grey-700})');
+$blue-grey-800: unquote('rgb(#{$palette-blue-grey-800})');
+$blue-grey-900: unquote('rgb(#{$palette-blue-grey-900})');
+
+$color-primary-light: $palette-cyan-300;
+$color-primary: $palette-cyan-500;
+$color-primary-dark: $palette-cyan-700;
+$color-accent: $palette-teal-A200;
+
+$primary-color-light: unquote('rgb(#{$color-primary-light})');
+$primary-color: unquote('rgb(#{$color-primary})');
+$primary-color-dark: unquote('rgb(#{$color-primary-dark})');
+$accent-color: unquote('rgb(#{$color-accent})');
+
+$dark-black: rgba(0, 0, 0, 0.87);
+$light-black: rgba(0, 0, 0, 0.54);
+$dark-white: rgba(255, 255, 255, 0.7);
+$light-white: rgba(255, 255, 255, 0.54);
+
+// Variables and mixins
+@import '~material-design-lite/src/variables';
+@import '~material-design-lite/src/mixins';
+
+.fill {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.relative {
+  position: relative;
+}
+
+.caption {
+  @include typo-caption(true);
+}

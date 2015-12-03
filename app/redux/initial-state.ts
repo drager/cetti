@@ -58,7 +58,6 @@ const initialState = {
           bucket: 'sum',
           typeConfiguration: {
             type: NumberType.sum,
-            filter: (data) => data.value < 5,
           },
         },
         {
@@ -166,7 +165,7 @@ const initialState = {
       },
       {
         timestamp: Date.now(),
-        value: 5,
+        value: 50000,
       },
     ],
     chart: [

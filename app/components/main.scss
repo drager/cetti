@@ -1,0 +1,33 @@
+@import '../style/definitions';
+
+:global(#app) {
+  .Drawer {
+    display: flex;
+    color: white;
+    background-color: $blue-grey-900;
+
+    .Navigation {
+      flex-grow: 1;
+      background-color: $blue-grey-800;
+    }
+
+    .navLink {
+      color: $light-white;
+
+      &.active {
+        color: $primary-color-light;
+        background-color: $blue-grey-700;
+      }
+
+      &:hover {
+        color: $blue-grey-800;
+        background-color: $primary-color;
+      }
+    }
+  }
+
+  .Content {
+    display: flex;
+    background-color: $grey-100;
+  }
+}

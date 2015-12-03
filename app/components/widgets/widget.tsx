@@ -2,24 +2,12 @@ import * as React from 'react';
 import { Card } from 'react-mdl';
 import { Link } from 'react-router';
 
-import { WidgetConfiguration } from '../lib/entites';
+import { WidgetConfiguration } from '../../lib/entites';
+import { classNames } from '../../lib/helpers';
 
+const styles = require('./widget.scss');
+const globalStyles = require('../../style/definitions.scss');
 const padding = 16;
-const styles = Object.freeze({
-  link: {
-    color: 'currentColor',
-    cursor: 'default',
-  },
-  widget: {
-    position: 'absolute',
-    minHeight: 0,
-  },
-  title: {
-    margin: 0,
-    padding: 16,
-    color: 'rgba(0, 0, 0, 0.7)',
-  },
-});
 
 type Properties = {
   grid: {cols: number, rows: number},
@@ -39,14 +27,18 @@ export class Widget extends React.Component<Properties, {}> {
     const height = `calc(${placement.height / grid.rows * 100}% - ${padding}px)`;
 
     const card = (
-      <Card shadow={0} style={Object.assign({top, left, width, height}, styles.widget)}>
-        {title && <h3 style={styles.title}>{title}</h3>}
-        {children}
+      <Card shadow={0} style={{top, left, width, height}}>
+        {title && <h4 className={styles.title}>{title}</h4>}
+        <div className={classNames(globalStyles.grow, globalStyles.relative)}>
+          <div className={globalStyles.fill}>
+            {children}
+          </div>
+        </div>
       </Card>
     );
 
     return dashboard
-      ? <Link to={`/${dashboard}`} style={styles.link}>{card}</Link>
+      ? <Link to={`/${dashboard}`}>{card}</Link>
       : card;
   }
 }

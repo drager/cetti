@@ -1,42 +1,12 @@
-import * as Colors from 'material-ui/lib/styles/colors';
-import radium from 'radium';
 import * as React from 'react';
 import { Layout, Content, Drawer, Navigation } from 'react-mdl';
-import { Link as RouterLink } from 'react-router';
+import { Link } from 'react-router';
 
 import { DashboardsConfiguration } from '../lib/entites';
+import { classNames } from '../lib/helpers';
 import { stateful } from '../redux/helpers';
 
-const Link = radium(RouterLink);
-
-const styles = Object.freeze({
-  content: {
-    display: 'flex',
-    backgroundColor: Colors.grey100,
-  },
-  drawer: {
-    display: 'flex',
-    color: Colors.lightWhite,
-    backgroundColor: Colors.blueGrey900,
-  },
-  navigation: {
-    flexGrow: 1,
-    backgroundColor: Colors.blueGrey800,
-  },
-  navLink: {
-    color: Colors.lightWhite,
-
-    active: {
-      color: Colors.cyan300,
-      backgroundColor: Colors.blueGrey700,
-    },
-
-    ':hover': {
-      color: Colors.blueGrey800,
-      backgroundColor: Colors.cyan500,
-    },
-  },
-});
+const styles = require('./main.scss');
 
 type Properties = {
   children: JSX.Element,
@@ -57,17 +27,17 @@ export class Main extends React.Component<Properties, State> {
 
     return (
       <Layout fixedDrawer>
-        <Drawer title='Cetti' style={styles.drawer}>
-          <Navigation style={styles.navigation}>
+        <Drawer title='Cetti'>
+          <Navigation>
             {Object.entries(dashboards).map(([id, dashboard]) =>
               <Link to={`/${id}`} key={id}
-                    style={[styles.navLink, (id === params.id && styles.navLink.active)]}>
+                    className={classNames(styles.navLink, id === params.id && styles.active)}>
                 {dashboard.name}
               </Link>
             )}
           </Navigation>
         </Drawer>
-        <Content style={styles.content}>
+        <Content>
           {this.props.children}
         </Content>
       </Layout>

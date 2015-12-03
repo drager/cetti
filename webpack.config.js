@@ -17,6 +17,7 @@ var config = {
           'react-hot',
           'babel?' + JSON.stringify({
             presets: ['react', 'es2015', 'stage-0'],
+            plugins: ['jsx-tagclass'],
           }),
           'ts',
         ],
@@ -28,6 +29,25 @@ var config = {
       {
         test: /\.css$/,
         loader: 'style!css',
+      },
+      {
+        test: /\.scss$/,
+        exclude: /\.global\.scss$/,
+        loaders: [
+          'style',
+          'css?modules',
+          'resolve-url',
+          'sass',
+        ],
+      },
+      {
+        test: /\.global\.scss$/,
+        loaders: [
+          'style',
+          'css',
+          'resolve-url',
+          'sass',
+        ],
       },
     ]
   },

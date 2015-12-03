@@ -1,0 +1,57 @@
+@import '../../style/definitions';
+
+:root .Card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  padding: 8px;
+  padding-top: 0;
+  width: 100%;
+  min-height: 0;
+
+  .done {
+    width: 48px;
+    height: 48px;
+    color: $green-500;
+  }
+}
+
+.count {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  margin: 8px;
+  margin-right: 12px;
+  width: 48px;
+  height: 48px;
+
+  color: white;
+  background-color: $red-500;
+  border-radius: 50%;
+  font-size: 24px;
+}
+
+.header {
+  margin: 0;
+  margin-bottom: 4px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.date {
+  color: $light-black;
+}
+
+.text {
+  flex: 1;
+  overflow: hidden;
+}
+
+.warning {
+  color: $input-text-error-color;
+}

@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "jsx": "react",
+        "jsx": "preserve",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "inlineSourceMap": false,

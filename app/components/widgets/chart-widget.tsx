@@ -1,4 +1,3 @@
-import * as Colors from 'material-ui/lib/styles/colors';
 import * as React from 'react';
 
 import {
@@ -8,11 +7,13 @@ import {
   ChartType,
   ChartWidgetConfiguration,
   WidgetConfiguration,
-} from '../lib/entites';
-import { stateful } from '../redux/helpers';
+} from '../../lib/entites';
+import { stateful } from '../../redux/helpers';
 
-import { catmullRomSpline } from '../lib/catmull-rom-spline';
+import { catmullRomSpline } from '../../lib/catmull-rom-spline';
 import { Widget } from './widget';
+
+const styles = require('./chart-widget.scss');
 
 type Properties = {
   grid: {cols: number, rows: number},
@@ -45,6 +46,13 @@ const axisWidth = 50;
 
 @stateful(state => ({buckets: state.buckets}))
 export class ChartWidget extends React.Component<Properties, State> {
+
+  get diagramSize() {
+    const width = this.state.width - padding * 2 - axisWidth;
+    const height = this.state.height - padding * 2;
+
+    return {height, width};
+  }
 
   getConfiguration() {
     return this.props.configuration.typeConfiguration as ChartWidgetConfiguration;
@@ -175,55 +183,59 @@ export class ChartWidget extends React.Component<Properties, State> {
       <g>
         {labels.map((label, index) =>
             <text x={label.x} y={label.y} textAnchor='end' key={index}
-                  fill='rgba(0, 0, 0, 0.54)'>{label.text}</text>)}
+                  className={styles.label}>{label.text}</text>)}
       </g>
     );
   }
 
   private renderDiagram(data: Data): JSX.Element | JSX.Element[] {
-    const diagramHeight = (this.state.height - padding * 2);
-    const diagramWidth = (this.state.width - padding * 2 - axisWidth);
-    let xScale = diagramWidth / data.x.length;
-    const yScale = diagramHeight / data.y.length;
-
     switch (data.type) {
-      case ChartType.bar:
-        return data.points.map((point, index) => {
-          const width = 0.5 * xScale;
-          xScale = (diagramWidth - width) / data.x.length;
-          const height = (point.y - data.y.min) * yScale;
-
-          return <rect x={point.x * xScale + axisWidth} y={diagramHeight + padding - height}
-                       width={width} height={height} key={index} fill={Colors.teal400} />;
-        });
-
-      case ChartType.line:
-        const yMin = data.y.min;
-        const stop = (x, y) => `${(x - data.x.min) * xScale + axisWidth}, ` +
-                               `${diagramHeight + padding - (Math.max(y, yMin) - yMin) * yScale}`;
-
-        let points = data.points;
-        if (this.getConfiguration().smooth) {
-          points = catmullRomSpline(points, 20);
-        }
-        let line;
-        if (this.getConfiguration().fill) {
-          line = `M ${stop(data.x.min, data.y.min)} L ${stop(points[0].x, points[0].y)}`;
-        } else {
-          line = `M ${stop(points[0].x, points[0].y)} L`;
-        }
-
-        points.slice(1).forEach(({x, y}, index) => (line += ` ${stop(x, y)}`));
-
-        if (this.getConfiguration().fill) {
-          line += ` L ${stop(points[points.length - 1].x, data.y.min)}`;
-        }
-
-        return this.getConfiguration().fill
-          ? <path d={line} stroke='none' fill={Colors.teal300} />
-          : <path d={line} strokeWidth={3} stroke={Colors.teal500} fill='none' />;
-
+      case ChartType.bar:  return this.renderBarDiagram(data);
+      case ChartType.line: return this.renderLineDiagram(data);
       default: throw new Error('Invalid chart type');
     }
+  }
+
+  private renderBarDiagram(data: Data) {
+    const {width, height} = this.diagramSize;
+    const barWidth = 0.5 * width / data.x.length;
+    const xScale = (width - barWidth) / data.x.length;
+    const yScale = height / data.y.length;
+
+    return data.points.map((point, index) => {
+      const barHeight = (point.y - data.y.min) * yScale;
+
+      return <rect x={point.x * xScale + axisWidth} y={height + padding - barHeight}
+                   width={barWidth} height={barHeight} key={index} className={styles.area} />;
+    });
+  }
+
+  private renderLineDiagram(data: Data) {
+    const {fill, smooth} = this.getConfiguration();
+    const {width, height} = this.diagramSize;
+    const yMin = data.y.min;
+    const xScale = width / data.x.length;
+    const yScale = height / data.y.length;
+    const stop = (x, y) => `${(x - data.x.min) * xScale + axisWidth}, ` +
+                           `${height + padding - (Math.max(y, yMin) - yMin) * yScale}`;
+
+    let points = data.points;
+    if (smooth) {
+      points = catmullRomSpline(points, 20);
+    }
+    let line;
+    if (fill) {
+      line = `M ${stop(data.x.min, data.y.min)} L ${stop(points[0].x, points[0].y)}`;
+    } else {
+      line = `M ${stop(points[0].x, points[0].y)} L`;
+    }
+
+    points.slice(1).forEach(({x, y}, index) => (line += ` ${stop(x, y)}`));
+
+    if (fill) {
+      line += ` L ${stop(points[points.length - 1].x, data.y.min)}`;
+    }
+
+    return <path d={line} className={fill ? styles.area : styles.stroke} />;
   }
 }

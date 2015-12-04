@@ -1,0 +1,30 @@
+@import '../../style/definitions';
+
+:root .Card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  padding: 8px;
+  padding-top: 0;
+  width: 100%;
+  min-height: 0;
+}
+
+.header {
+  margin: 0;
+  margin-bottom: 4px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.date {
+  color: $light-black;
+}
+
+.text {
+  flex: 1;
+  overflow: hidden;
+}

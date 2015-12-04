@@ -17,7 +17,7 @@ const styles = require('./chart-widget.scss');
 
 type Properties = {
   grid: {cols: number, rows: number},
-  configuration: WidgetConfiguration,
+  configuration: WidgetConfiguration<ChartWidgetConfiguration>,
   key?: any,
 };
 
@@ -55,7 +55,7 @@ export class ChartWidget extends React.Component<Properties, State> {
   }
 
   getConfiguration() {
-    return this.props.configuration.typeConfiguration as ChartWidgetConfiguration;
+    return this.props.configuration.typeConfiguration;
   }
 
   constructor(props) {
@@ -80,7 +80,7 @@ export class ChartWidget extends React.Component<Properties, State> {
   }
 
   getData(): Data {
-    const configuration = this.props.configuration.typeConfiguration as ChartWidgetConfiguration;
+    const configuration = this.props.configuration.typeConfiguration;
     let dataPoints = this.state.buckets[this.props.configuration.bucket];
 
     const fixAxis = (axis: AxisConfiguration) => {

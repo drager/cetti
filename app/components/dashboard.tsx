@@ -2,20 +2,21 @@ import * as React from 'react';
 
 import {
   DashboardsConfiguration,
+  ListWidgetConfiguration,
   WidgetConfiguration,
   WidgetType,
 } from '../lib/entites';
 import { stateful } from '../redux/helpers';
 
 import { ChartWidget } from './widgets/chart-widget';
-import { ErrorListWidget } from './widgets/error-list-widget';
+import { ListWidget } from './widgets/list-widget';
 import { NumberWidget } from './widgets/number-widget';
 
 const styles = require('./dashboard.scss');
 
 const type = {
   [WidgetType.chart]: ChartWidget,
-  [WidgetType.errorList]: ErrorListWidget,
+  [WidgetType.list]: ListWidget,
   [WidgetType.number]: NumberWidget,
 };
 
@@ -41,7 +42,7 @@ export class Dashboard extends React.Component<Properties, State> {
     );
   }
 
-  private renderWidget(grid, widget: WidgetConfiguration, key) {
+  private renderWidget(grid, widget: WidgetConfiguration<ListWidgetConfiguration>, key) {
     const WidgetComponent = type[widget.type];
 
     if (!WidgetComponent) {

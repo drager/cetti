@@ -14,7 +14,7 @@ import { Widget } from './widget';
 const styles = require('./number-widget.scss');
 
 type Properties = {
-  configuration: WidgetConfiguration,
+  configuration: WidgetConfiguration<NumberWidgetConfiguration>,
   grid: {cols: number, rows: number},
   key?: any,
 }
@@ -27,7 +27,7 @@ type State = {
 export class NumberWidget extends React.Component<Properties, State> {
 
   getData() {
-    const configuration = this.props.configuration.typeConfiguration as NumberWidgetConfiguration;
+    const configuration = this.props.configuration.typeConfiguration;
     let dataPoints = this.state.buckets[this.props.configuration.bucket] || [];
 
     if (configuration.filter) {
@@ -45,7 +45,7 @@ export class NumberWidget extends React.Component<Properties, State> {
 
   render() {
     const { configuration, grid } = this.props;
-    const { unit } = configuration.typeConfiguration as NumberWidgetConfiguration;
+    const { unit } = configuration.typeConfiguration;
     const number = this.getData();
     const useSmallFont = number >= (unit ? 1000 : 10000);
 

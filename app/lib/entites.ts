@@ -57,10 +57,10 @@ export interface DashboardConfiguration {
     rows: number;
     cols: number;
   };
-  widgets: WidgetConfiguration[];
+  widgets: WidgetConfiguration<any>[];
 }
 
-export interface WidgetConfiguration {
+export interface WidgetConfiguration<T> {
   placement: {
     x: number;
     y: number;
@@ -70,7 +70,7 @@ export interface WidgetConfiguration {
   type: WidgetType;
   title: string;
   bucket: string;
-  typeConfiguration?: NumberWidgetConfiguration | ChartWidgetConfiguration;
+  typeConfiguration?: T;
   /**
    * A link to another dashboard that should be opened when the widget is clicked
    */
@@ -95,6 +95,15 @@ export interface ChartWidgetConfiguration {
    * Whenever the curve of a line chart should be smoothed or not
    */
   smooth?: boolean;
+}
+
+type MapFunction = (dataPoint: DataPoint<any>) => string;
+
+export interface ListWidgetConfiguration {
+  type: ListType;
+  filter?: (dataPoint: DataPoint<any>) => boolean;
+  title?: MapFunction|string;
+  subtitle?: MapFunction|string;
 }
 
 export interface AxisConfiguration {
@@ -143,8 +152,14 @@ export enum ChartType {
   line,
 }
 
+export enum ListType {
+  generic,
+  error,
+}
+
 export enum WidgetType {
   chart,
   errorList,
+  list,
   number,
 }

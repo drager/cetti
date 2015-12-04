@@ -11,7 +11,7 @@ const padding = 16;
 
 type Properties = {
   grid: {cols: number, rows: number},
-  configuration: WidgetConfiguration,
+  configuration: WidgetConfiguration<any>,
   children?: JSX.Element|JSX.Element[],
 };
 

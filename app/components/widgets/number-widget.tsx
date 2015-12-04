@@ -1,5 +1,3 @@
-import * as Colors from 'material-ui/lib/styles/colors';
-import * as Typography from 'material-ui/lib/styles/typography';
 import * as React from 'react';
 
 import {
@@ -7,38 +5,13 @@ import {
   NumberType,
   NumberWidgetConfiguration,
   WidgetConfiguration,
-} from '../lib/entites';
-import { stateful } from '../redux/helpers';
+} from '../../lib/entites';
+import { classNames } from '../../lib/helpers';
+import { stateful } from '../../redux/helpers';
 
 import { Widget } from './widget';
 
-const styles = Object.freeze({
-  container: {
-    display: 'flex',
-    alignItems: 'flex-end',
-
-    position: 'absolute',
-    right: 8,
-    bottom: 0,
-  },
-  number: {
-    position: 'relative',
-    right: 16,
-    bottom: -4,
-    margin: 0,
-
-    color: Colors.teal500,
-
-    fontSize: 72,
-  },
-  unit: {
-    margin: 0,
-    marginLeft: -8,
-    marginBottom: 12,
-
-    color: Typography.textLightBlack,
-  },
-});
+const styles = require('./number-widget.scss');
 
 type Properties = {
   configuration: WidgetConfiguration,
@@ -73,12 +46,14 @@ export class NumberWidget extends React.Component<Properties, State> {
   render() {
     const { configuration, grid } = this.props;
     const { unit } = configuration.typeConfiguration as NumberWidgetConfiguration;
+    const number = this.getData();
+    const useSmallFont = number >= (unit ? 1000 : 10000);
 
     return (
       <Widget grid={grid} configuration={configuration}>
-        <div style={styles.container}>
-          <h1 style={styles.number}>{this.getData()}</h1>
-          {unit && <h2 style={styles.unit}>{unit}</h2>}
+        <div className={styles.container}>
+          <h1 className={classNames(styles.number, useSmallFont && styles.small)}>{number}</h1>
+          {unit && <h2 className={styles.unit}>{unit}</h2>}
         </div>
       </Widget>
     );

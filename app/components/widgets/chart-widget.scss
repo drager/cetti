@@ -1,0 +1,20 @@
+@import '../../style/definitions';
+
+.label {
+  @include typo-caption(true);
+  fill: currentColor;
+}
+
+.area {
+  fill: $teal-400;
+}
+
+.stroke {
+  fill: none;
+  stroke: $teal-500;
+  stroke-width: 3;
+}
+
+text {
+  dominant-baseline: middle;
+}

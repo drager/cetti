@@ -1,0 +1,8 @@
+@import '../style/definitions';
+
+.container {
+  position: relative;
+  flex: 1;
+  margin: 4px;
+  background-color: $light-white;
+}

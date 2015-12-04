@@ -12,7 +12,9 @@ import { Dashboard } from './components/dashboard';
 import { ActivityDetail } from './components/activity-detail';
 import { Cetti } from './client';
 
-require('react-mdl/extra/material.css');
+window['React'] = React;
+
+require('./style/mdl.global.scss');
 require('react-mdl/extra/material.js');
 
 render(

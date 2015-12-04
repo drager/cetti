@@ -2,8 +2,6 @@ import * as React from 'react';
 import * as Colors from 'material-ui/lib/styles/colors';
 import * as Typography from 'material-ui/lib/styles/typography';
 
-import { fontStyles, layoutStyles } from '../lib/styles';
-
 const styles = Object.freeze({
   container: {
     flex: 1,
@@ -19,11 +17,11 @@ const styles = Object.freeze({
     fontWeight: Typography.fontWeightLight,
     margin: 0,
     padding: 8,
-  }, fontStyles.title),
+  } /*, fontStyles.title*/),
   occurredLabel: Object.assign({
     display: 'flex',
     alignItems: 'center',
-  }, layoutStyles.column),
+  }),
   timesOccurred: {
     fontWeight: Typography.fontWeightLight,
     fontSize: 64,

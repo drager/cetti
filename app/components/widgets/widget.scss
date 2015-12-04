@@ -1,0 +1,19 @@
+:root .Card {
+  display: flex;
+  position: absolute;
+
+  min-height: 0;
+  overflow: auto;
+}
+
+.Link {
+  color: currentColor;
+  text-decoration: none;
+  cursor: default;
+}
+
+.title {
+  margin: 0;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.7);
+}

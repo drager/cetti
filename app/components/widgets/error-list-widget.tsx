@@ -5,19 +5,12 @@ import {
   DataPoint,
   ErrorMessage,
   WidgetConfiguration,
-} from '../lib/entites';
-import { actions } from '../redux/actions';
-import { dispatch, stateful } from '../redux/helpers';
+} from '../../lib/entites';
+import { actions } from '../../redux/actions';
+import { dispatch, stateful } from '../../redux/helpers';
 
 import { ErrorListItem } from './error-list-item';
 import { Widget } from './widget';
-
-const styles = Object.freeze({
-  container: {
-    paddingTop: 8,
-    paddingLeft: 8,
-  },
-});
 
 type Properties = {
   grid: {cols: number, rows: number},
@@ -46,7 +39,7 @@ export class ErrorListWidget extends React.Component<Properties, State> {
     return (
       <Widget grid={grid} configuration={configuration}>
         {this.getErrors().map((error) =>
-          <div key={error.id} style={styles.container}>
+          <div key={error.id}>
             <ErrorListItem error={error} occerences={2}
                            markAsResolved={this.markAsResolved.bind(this)} />
           </div>

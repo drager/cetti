@@ -64,7 +64,7 @@ export function stateful(getState: (globalState: State) => Object): ClassDecorat
           dispose();
           return componentWillUnmount.apply(component, args);
         }
-        : dispose;
+        : () => dispose();
 
       component.state = Object.assign(component.state || {}, getState(store.getState()));
       dispose = store.subscribe(() =>

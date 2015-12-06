@@ -3,6 +3,7 @@
         "jsx": "preserve",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
+        "sourceMap": true,
         "inlineSourceMap": false,
         "inlineSources": false,
         "target": "es6",

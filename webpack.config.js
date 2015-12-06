@@ -8,6 +8,8 @@ var config = {
     path: './dist',
     filename: 'app.js',
   },
+  debug: true,
+  devtool: 'eval-source-map',
   module: {
     loaders: [
       {

@@ -284,33 +284,6 @@ const initialState = {
         },
       },
     ],
-    build: [
-      {
-        id: '1',
-        timestamp: Date.parse('2015-11-30T11:51:09Z'),
-        value: {
-          message: `Merge pull request #27 from drager/activity-detail
-                    Big fat refactor, doing everything better. Dynamic routing and so on!`,
-          duration: 262,
-          finished_at: '2015-11-30T11:54:04Z',
-          result: 1,
-          branch: 'master',
-        },
-      },
-      {
-        id: '2',
-        timestamp: Date.parse('2015-11-30T11:45:22Z'),
-        value: {
-          result: 0,
-          started_at: '2015-11-30T11:45:22Z',
-          finished_at: '2015-11-30T11:48:26Z',
-          duration: 184,
-          branch: 'master',
-          message: 'fix: Set type on initialState',
-          event_type: 'pull_request',
-        },
-      }
-    ],
   } as BucketCollection,
 };
 

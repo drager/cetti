@@ -7,10 +7,11 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { Router, Route } from 'react-router';
 
+import { getBuilds } from './travis-builds';
+
 import { Main } from './components/main';
 import { Dashboard } from './components/dashboard';
 import { ActivityDetail } from './components/activity-detail';
-import { Cetti } from './client';
 
 window['React'] = React;
 
@@ -29,4 +30,4 @@ render(
   document.getElementById('app')
 );
 
-new Cetti();
+getBuilds();

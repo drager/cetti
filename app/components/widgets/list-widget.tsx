@@ -32,7 +32,7 @@ export class ListWidget extends React.Component<Properties, State> {
 
   getListData(): any[] {
     const {filter, subtitle, title, type} = this.props.configuration.typeConfiguration;
-    let dataPoints = this.state.buckets[this.props.configuration.bucket];
+    let dataPoints = this.state.buckets[this.props.configuration.bucket] || [];
 
     if (filter) {
       dataPoints = dataPoints.filter(filter);

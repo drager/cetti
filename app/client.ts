@@ -128,6 +128,7 @@ export class Cetti {
     this.dataToPush.push({
       bucketName,
       dataPoint: {
+        id: Math.random().toString(36).substring(2, 15),
         sessionId: this.sessionId,
         timestamp: Date.now(),
         value: data,

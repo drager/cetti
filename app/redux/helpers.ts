@@ -31,20 +31,8 @@ export function createReducer<S extends {}>(initialState: S): ReducerBuilder<S> 
   };
 }
 
-interface Class<T> {
+export interface Class<T> {
  new (): T;
-}
-
-export function createActions<T>(actionDefinitions: Class<T>): T {
-  const actionDef = new actionDefinitions();
-  return Object.freeze(
-    Object.keys(actionDef).reduce((actions, type) => {
-      let actionDefinition = actionDef[type];
-
-      actions[type] = Object.create(actionDefinition);
-      actions[type].type = type;
-      return actions;
-   }, actionDef));
 }
 
 export interface Action<T extends {}> {

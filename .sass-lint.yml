@@ -55,6 +55,7 @@ rules:
     -
       convention: 'none'
   brace-style: 1
+  class-name-format: 0
   clean-import-paths: 1
   empty-args: 1
   hex-length: 1

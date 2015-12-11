@@ -20,7 +20,7 @@
     "clean": "rm -rf .tmp"
   },
   "dependencies": {
-    "history": "^1.13.0",
+    "history": "~1.13.1",
     "material-design-lite": "^1.0.6",
     "material-ui": "^0.13.2",
     "radium": "^0.15.3",
@@ -29,9 +29,10 @@
     "react-dom": "^0.14.2",
     "react-mdl": "^1.0.2",
     "react-redux": "^4.0.0",
-    "react-router": "^1.0.0",
+    "react-router": "^1.0.2",
     "redux": "^3.0.4",
-    "rx": "^4.0.6"
+    "rx": "^4.0.6",
+    "whatwg-fetch": "^0.10.1"
   },
   "devDependencies": {
     "babel": "^6.0.15",

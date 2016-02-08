@@ -102,7 +102,7 @@ type MapFunction = (dataPoint: DataPoint<any>) => string;
 export interface ListWidgetConfiguration {
   type: ListType;
   filter?: (dataPoint: DataPoint<any>) => boolean;
-  title?: MapFunction|string;
+  title: MapFunction|string;
   subtitle?: MapFunction|string;
 }
 

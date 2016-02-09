@@ -12,6 +12,7 @@
     "lib/**/*.ts",
     "typings/main.d.ts",
     "typings_custom/**/*.ts",
+    "typings/express.d.ts",
     "node_modules/nedb-persist/typings.d.ts",
     "node_modules/redux-websocket/typings.d.ts"
   ],

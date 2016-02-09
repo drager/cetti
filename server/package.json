@@ -23,7 +23,7 @@
     "redux": "^3.2.1",
     "redux-decorated": "^0.1.2",
     "redux-persist": "^1.5.2",
-    "redux-websocket": "^0.1.0"
+    "redux-websocket": "^0.2.1"
   },
   "devDependencies": {
     "babel": "^6.3.26",

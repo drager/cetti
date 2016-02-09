@@ -5,6 +5,7 @@ node_js:
 
 env:
 - TEST=client
+- TEST=server
 
 before_install:
   - export TSD_GITHUB_TOKEN=600c7f2cb9a4cd36521d03c24a032ef0aa8e8c47

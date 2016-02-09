@@ -1,0 +1,39 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "npm-run-all postinstall:*",
+    "postinstall:ts_base_config": "cp tsconfig.base.json tsconfig.json",
+    "postinstall:tsconfig": "tsconfig -i 2",
+    "build": "npm-run-all build:*",
+    "build:typescript": "tsc -p .",
+    "build:babel": "babel --out-dir bin .tmp --presets es2015",
+    "watch": "npm-run-all --parallel watch:*",
+    "watch:typescript": "tsc --watch",
+    "watch:babel": "babel --out-dir bin .tmp --presets es2015 --watch"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "express": "^4.13.4",
+    "nedb-persist": "^0.1.0",
+    "redux": "^3.2.1",
+    "redux-decorated": "^0.1.2",
+    "redux-persist": "^1.5.2",
+    "redux-websocket": "^0.1.0"
+  },
+  "devDependencies": {
+    "babel": "^6.3.26",
+    "babel-cli": "^6.5.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-2": "^6.3.13",
+    "npm-run-all": "^1.5.1",
+    "tsconfig-glob": "^0.4.1",
+    "tslint": "^3.3.0",
+    "typescript": "^1.7.5",
+    "typings": "^0.6.6"
+  }
+}

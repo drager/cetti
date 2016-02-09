@@ -8,6 +8,7 @@ typings/
 .tmp/
 dist/
 tsconfig.json
+bin/
 
 # node.js
 node_modules/

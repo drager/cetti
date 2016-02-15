@@ -13,10 +13,7 @@ export const storeCreator = () => {
   const reducer = combineReducers({
     buckets,
     dashboards,
-    versions: (state, action) => {
-      console.log('versionReducer', action);
-      return state || {};
-    },
+    versions: (state, action) => state || {},
   });
 
   const store = createStore(

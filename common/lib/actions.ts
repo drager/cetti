@@ -8,4 +8,3 @@ export const actions = createActions({
     },
   } as Action<{bucket: string, id: string}>,
 });
-console.log('actions', actions);

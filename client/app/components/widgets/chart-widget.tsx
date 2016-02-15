@@ -44,14 +44,10 @@ type Data = {
 const padding = 10;
 const axisWidth = 50;
 
-@stateful(state => {
-  console.log('stateful', state);
-  return ({buckets: state.buckets});
-})
+@stateful(state => ({buckets: state.buckets}))
 export class ChartWidget extends React.Component<Properties, State> {
 
   getDiagramSize() {
-    console.log(this.state);
     const width = this.state.width - padding * 2 - axisWidth;
     const height = this.state.height - padding * 2;
 

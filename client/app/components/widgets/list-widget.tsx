@@ -43,9 +43,6 @@ export class ListWidget extends React.Component<Properties, State> {
         filterMethod = R.not;
       }
       filterMethod = R.compose(filterMethod, R.path(filter.split('.')));
-      console.log(dataPoints[0]);
-      console.log(filterMethod(dataPoints[0]));
-      console.log('filterMethod', filterMethod(dataPoints[0]));
       dataPoints = R.filter(filterMethod, dataPoints);
     }
 

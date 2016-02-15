@@ -11,7 +11,6 @@ import { getBuilds } from './travis-builds';
 
 import { Main } from './components/main';
 import { Dashboard } from './components/dashboard';
-import { ActivityDetail } from './components/activity-detail';
 
 window['React'] = React;
 
@@ -22,7 +21,6 @@ render(
   (
     <Router>
       <Route path='/' component={Main}>
-        <Route path='stream/:id' component={ActivityDetail} />
         <Route path=':id' component={Dashboard} />
       </Route>
     </Router>

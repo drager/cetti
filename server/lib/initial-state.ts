@@ -58,7 +58,7 @@ const initialState = {
           title: 'Sum',
           bucket: 'sum',
           typeConfiguration: {
-            type: NumberType.sum,
+            type: NumberType.sum
           },
         },
         {
@@ -264,13 +264,15 @@ const initialState = {
           lineNumber: 32,
           columnNumber: 16,
           resolved: false,
-          stacktrace: [{
-            functionName: 'constructor()',
-            args: '',
-            fileName: '/app/components/activity-detail.tsx',
-            lineNumber: 32,
-            columnNumber: 16,
-          }],
+          stacktrace: [
+            {
+              functionName: 'constructor()',
+              args: '',
+              fileName: '/app/components/activity-detail.tsx',
+              lineNumber: 32,
+              columnNumber: 16,
+            },
+          ],
         },
       },
       {

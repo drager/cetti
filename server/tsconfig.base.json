@@ -5,7 +5,8 @@
     "emitDecoratorMetadata": true,
     "target": "es6",
     "module": "es6",
-    "outDir": ".tmp"
+    "outDir": ".tmp",
+    "moduleResolution": "node"
   },
   "filesGlob": [
     "*.ts",

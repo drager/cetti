@@ -1,4 +1,3 @@
-import nedb from 'nedb-persist';
 import { applyMiddleware, Store as ReduxStore, compose, createStore } from 'redux';
 import { reactStore } from 'redux-decorated/react';
 import { persistStore, autoRehydrate } from 'redux-persist';

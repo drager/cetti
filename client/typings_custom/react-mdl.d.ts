@@ -1,4 +1,4 @@
-/// <reference path="./react/react.d.ts" />
+/// <reference path="../typings/browser/ambient/react/react.d.ts" />
 
 declare module 'react-mdl' {
   import React = __React;

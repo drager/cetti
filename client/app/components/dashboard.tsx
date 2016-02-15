@@ -33,7 +33,9 @@ export class Dashboard extends React.Component<Properties, State> {
 
   render() {
     const configuration = this.state.dashboards[this.props.params.id];
-    if (!configuration) return <div className={styles.container} />
+    if (!configuration) {
+      return <div className={styles.container} />;
+    }
     const { grid, widgets } = configuration;
 
     return (

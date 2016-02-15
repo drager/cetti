@@ -3,7 +3,7 @@
 // Definitions by: Yuichi Murata <https://github.com/mrk21>, Václav Ostrožlík <https://github.com/vasek17>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
 
-///<reference path='../react/react.d.ts' />
+/// <reference path="../../typings/browser/ambient/react/react.d.ts" />
 
 declare module ReactRouter {
     import React = __React;
@@ -110,6 +110,7 @@ declare module ReactRouter {
         activeClassName?: string;
         activeStyle?: {};
         to: string;
+        key?: any;
         params?: {};
         query?: {};
     }

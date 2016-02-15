@@ -238,6 +238,7 @@ declare module R {
          * Returns the first element in a list.
          * In some libraries this function is named `first`.
          */
+        head(list: string): string;
         head<T>(list: T[]): T;
 
         /**

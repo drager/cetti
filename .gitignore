@@ -4,6 +4,8 @@
 # typings
 typings/
 
+db
+
 # Build chain
 .tmp/
 dist/

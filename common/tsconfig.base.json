@@ -14,7 +14,6 @@
     "typings_custom/**/*.ts",
     "typings/express.d.ts",
     "typings/redux-persist.d.ts",
-    "node_modules/common/lib/**/*.ts",
     "node_modules/nedb-persist/typings.d.ts",
     "node_modules/redux-decorated/typings.d.ts",
     "node_modules/redux-websocket/typings.d.ts"
@@ -34,8 +33,5 @@
     "placeOpenBraceOnNewLineForFunctions": false,
     "placeOpenBraceOnNewLineForControlBlocks": false
   },
-  "compileOnSave" : false,
-  "atom": {
-      "rewriteTsconfig": true
-  }
+  "compileOnSave" : false
 }

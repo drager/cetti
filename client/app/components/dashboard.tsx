@@ -5,8 +5,8 @@ import {
   ListWidgetConfiguration,
   WidgetConfiguration,
   WidgetType,
-} from '../lib/entites';
-import { stateful } from '../redux/helpers';
+} from 'common/lib/entites';
+import { stateful } from '../lib/store';
 
 import { ChartWidget } from './widgets/chart-widget';
 import { ListWidget } from './widgets/list-widget';
@@ -33,6 +33,7 @@ export class Dashboard extends React.Component<Properties, State> {
 
   render() {
     const configuration = this.state.dashboards[this.props.params.id];
+    if (!configuration) return <div className={styles.container} />
     const { grid, widgets } = configuration;
 
     return (

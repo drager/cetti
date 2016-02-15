@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Card, IconButton } from 'react-mdl';
 
-import { actions } from '../../redux/actions';
-import { dispatch } from '../../redux/helpers';
-import { DataPoint, ErrorMessage } from '../../lib/entites';
+import { DataPoint, ErrorMessage } from 'common/lib/entites';
+import { actions } from 'common/lib/actions';
+
+import { dispatch } from '../../lib/store';
 import { formatDate, isoDate } from '../../lib/helpers';
 
 const styles = require('./error-list-item.scss');

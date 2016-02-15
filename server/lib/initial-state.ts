@@ -6,7 +6,7 @@ import {
   NumberType,
   ListType,
   WidgetType,
-} from '../lib/entites';
+} from 'common/lib/entites';
 
 const initialState = {
   dashboards: {
@@ -108,7 +108,7 @@ const initialState = {
           dashboard: 'errors',
           typeConfiguration: {
             type: ListType.error,
-            filter: (data) => !data.value.resolved,
+            filter: '!value.resolved',
           },
         },
       ],
@@ -132,7 +132,7 @@ const initialState = {
           bucket: 'error',
           typeConfiguration: {
             type: ListType.error,
-            filter: (data) => !data.value.resolved,
+            filter: '!value.resolved',
           },
         },
       ],
@@ -278,6 +278,9 @@ const initialState = {
         timestamp: Date.parse('2015-11-10T10:59:42Z'),
         value: {
           message: `./app/components/card-list.tsx(54,43): error TS1005: ':' expected.`,
+          fileName: '/app/components/activity-detail.tsx',
+          lineNumber: 32,
+          columnNumber: 16,
           resolved: false,
           catched: true,
           stacktrace: [],

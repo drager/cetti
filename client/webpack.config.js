@@ -1,4 +1,13 @@
 var path = require('path');
+
+const production = process.env.NODE_ENV === 'production';
+
+const babelPlugins = ['jsx-tagclass'];
+const babelProdPlugins = babelPlugins.concat(
+  ['transform-react-constant-elements', 'transform-react-inline-elements']
+);
+
+
 var config = {
   entry: {
     javascript: ['babel-polyfill', './app/index'],
@@ -8,8 +17,8 @@ var config = {
     path: './dist',
     filename: 'app.js',
   },
-  debug: true,
-  devtool: 'eval-source-map',
+  debug: !production,
+  devtool: production ? 'source-map' : 'eval-source-map',
   module: {
     loaders: [
       {
@@ -18,8 +27,14 @@ var config = {
         loaders: [
           'react-hot',
           'babel?' + JSON.stringify({
-            presets: ['react', 'es2015', 'stage-0'],
-            plugins: ['jsx-tagclass'],
+            presets: [
+              require.resolve('babel-preset-react'),
+              require.resolve('babel-preset-es2015'),
+              require.resolve('babel-preset-stage-2'),
+            ],
+            plugins: production
+              ? babelProdPlugins
+              : babelPlugins,
           }),
           'ts',
         ],
@@ -54,11 +69,12 @@ var config = {
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.ts', '.tsx']
+    extensions: ['', '.js', '.ts', '.tsx'],
+    modulesDirectories: ['node_modules', path.resolve('./node_modules')],
   },
 };
 
-if (process.env.NODE_ENV === 'production') {
+if (pproduction) {
   var webpack = require('webpack');
 
   config.plugins = [

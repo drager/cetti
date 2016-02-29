@@ -2,6 +2,13 @@ import {PushData} from './lib/entites';
 import {actions} from './redux/actions';
 import {dispatch} from './redux/helpers';
 
+const buckets = {
+  performance: {
+    downloadTime: 'performance.downloadTime',
+    renderTime: 'performance.renderTime',
+  }
+}
+
 /**
  * To do at startup:
  * 1. Subscribe to errors (use code from bugsnag)
@@ -35,7 +42,7 @@ export class Cetti {
       };
     } else {
       // Mobile Safari does not support the performance API
-      if (performance) {
+      if (window.performance) {
         this.startTime = performance.now;
         this.endTime = performance.now;
       } else {
@@ -47,7 +54,7 @@ export class Cetti {
     /**
      * IE 9 and Android <= 4.3 does't support requestAnimationFrame and as we use it for
      * performance measurements it doesn't make much sense to fallback on setTimeout, so
-     * instead we ignore attempts to measure.
+     * instead we ignore attempts to measure frame time in these browsers.
      */
     if (!window.requestAnimationFrame) {
       this.measureFrame = () => { /* empty */ };
@@ -108,13 +115,16 @@ export class Cetti {
     });
   }
 
+  /**
+   * Bind unhandled error listeners and collects load time if the browser supports it
+   */
   private bindAndCollect() {
     window.removeEventListener('load', this.bindAndCollect);
 
     if (window.performance && performance.navigation && performance.timing) {
       const {fetchStart, responseEnd, domLoading, domComplete} = performance.timing;
-      this.value('downloadTime', responseEnd - fetchStart);
-      this.value('renderTime', domComplete - domLoading);
+      this.value(buckets.performance.downloadTime, responseEnd - fetchStart);
+      this.value(buckets.performance.renderTime, domComplete - domLoading);
 
       if (performance.navigation.type === performance.navigation.TYPE_NAVIGATE) {
         // TODO: Not for reload and back/forward?
@@ -122,7 +132,7 @@ export class Cetti {
     }
   }
 
-  // Maybe add a delay for a chanse of batching data
+  // Maybe add a delay for a chance of batching data
   // What should we do in debug mode?
   private schedulePush(bucketName: string, data?) {
     this.dataToPush.push({

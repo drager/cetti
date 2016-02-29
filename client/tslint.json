@@ -6,7 +6,7 @@
       "check-uppercase"
     ],
     "curly": true,
-    "eofline": false,
+    "eofline": true,
     "forin": true,
     "indent": [true, "spaces", 2],
     "label-position": true,
@@ -32,9 +32,8 @@
     "no-eval": true,
     "no-string-literal": false,
     "no-switch-case-fall-through": true,
-    "no-trailing-comma": false,
     "no-trailing-whitespace": true,
-    "no-unused-variable": [true, "react"],
+    "no-unused-variable": [true, "react", {"ignore-pattern": "^_$"}],
     "no-unreachable": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
@@ -64,8 +63,6 @@
       "check-separator",
       "check-type"
     ],
-    "blank-lines": true,
-    "selfclosing-tsx": true,
     "trailing-comma": [true, {
       "multiline": "always",
       "singleline": "never"

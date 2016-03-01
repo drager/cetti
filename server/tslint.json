@@ -32,7 +32,6 @@
     "no-eval": true,
     "no-string-literal": false,
     "no-switch-case-fall-through": true,
-    "no-trailing-comma": false,
     "no-trailing-whitespace": true,
     "no-unused-variable": [true, "react"],
     "no-unreachable": true,
@@ -64,8 +63,6 @@
       "check-separator",
       "check-type"
     ],
-    "blank-lines": true,
-    "selfclosing-tsx": true,
     "trailing-comma": [true, {
       "multiline": "always",
       "singleline": "never"

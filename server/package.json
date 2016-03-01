@@ -34,7 +34,7 @@
     "babel-preset-stage-2": "^6.3.13",
     "npm-run-all": "^1.5.1",
     "tsconfig-glob": "^0.4.1",
-    "tslint": "^3.3.0",
+    "tslint": "^3.5.0",
     "typescript": "^1.7.5",
     "typings": "^0.6.6"
   }

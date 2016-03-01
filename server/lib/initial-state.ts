@@ -58,7 +58,7 @@ const initialState = {
           title: 'Sum',
           bucket: 'sum',
           typeConfiguration: {
-            type: NumberType.sum
+            type: NumberType.sum,
           },
         },
         {

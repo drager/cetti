@@ -16,6 +16,7 @@
     "app/**/*.tsx",
     "app/**/*.ts",
     "typings/browser.d.ts",
+    "typings/tsd.d.ts",
     "typings_custom/**/*.ts",
     "node_modules/common/lib/**/*.ts",
     "node_modules/redux-decorated/typings.d.ts",

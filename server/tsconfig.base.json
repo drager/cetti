@@ -12,6 +12,7 @@
     "*.ts",
     "lib/**/*.ts",
     "typings/main.d.ts",
+    "typings/tsd.d.ts",
     "typings_custom/**/*.ts",
     "typings/express.d.ts",
     "typings/redux-persist.d.ts",

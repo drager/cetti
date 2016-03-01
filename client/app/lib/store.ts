@@ -32,7 +32,7 @@ export const store = createStore(
       connection: webSocketClient,
       keys: ['buckets', 'dashboards'],
     }),
-    applyMiddleware(websocketMiddleware({client: webSocketClient, actions}))
+    applyMiddleware(websocketMiddleware({socket: webSocketClient, actions}))
   )
 ) as Store;
 

@@ -9,8 +9,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "redux": "^3.3.1",
-    "redux-decorated": "^0.1.2",
-    "redux-websocket": "^0.2.1"
+    "redux-decorated": "git://github.com/Pajn/redux-decorated"
   },
   "devDependencies": {
     "babel-plugin-jsx-tagclass": "^0.1.2",

@@ -29,10 +29,10 @@ export const store = createStore(
   compose(
     autoRehydrate(),
     syncStoreEnhancer({
-      connection: webSocketClient,
+      socket: webSocketClient,
       keys: ['buckets', 'dashboards'],
     }),
-    applyMiddleware(websocketMiddleware({socket: webSocketClient, actions}))
+    applyMiddleware(websocketMiddleware({socket: webSocketClient, actions: actions as any}))
   )
 ) as Store;
 

@@ -20,9 +20,9 @@ export const storeCreator = () => {
     reducer,
     compose(
       autoRehydrate(),
-      applyMiddleware(websocketMiddleware({server: webSocketServer, actions})),
+      applyMiddleware(websocketMiddleware({socket: webSocketServer, actions: actions as any})),
       syncStoreEnhancer({
-        connection: webSocketServer,
+        socket: webSocketServer,
         keys: ['buckets', 'dashboards'],
       })
     )

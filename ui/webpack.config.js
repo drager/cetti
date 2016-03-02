@@ -1,6 +1,15 @@
+'use strict';
+
 const path = require('path');
+const webpack = require('webpack');
 
 const production = process.env.NODE_ENV === 'production';
+
+const babelPlugins = ['jsx-tagclass'];
+const babelProdPlugins = babelPlugins.concat(
+  ['transform-react-constant-elements', 'transform-react-inline-elements']
+);
+
 
 const config = {
   entry: {
@@ -11,8 +20,8 @@ const config = {
     path: './dist',
     filename: 'app.js',
   },
-  debug: true,
-  devtool: production ? '' : 'eval-source-map',
+  debug: !production,
+  devtool: production ? 'source-map' : 'eval-source-map',
   module: {
     loaders: [
       {
@@ -21,8 +30,14 @@ const config = {
         loaders: [
           'react-hot',
           'babel?' + JSON.stringify({
-            presets: ['react', 'es2015', 'stage-0'],
-            plugins: ['jsx-tagclass'],
+            presets: [
+              require.resolve('babel-preset-react'),
+              require.resolve('babel-preset-es2015'),
+              require.resolve('babel-preset-stage-2'),
+            ],
+            plugins: production
+              ? babelProdPlugins
+              : babelPlugins,
           }),
           'ts',
         ],
@@ -58,12 +73,11 @@ const config = {
   },
   resolve: {
     extensions: ['', '.js', '.ts', '.tsx'],
+    modulesDirectories: ['node_modules', path.resolve('./node_modules')],
   },
 };
 
 if (production) {
-  var webpack = require('webpack');
-
   config.plugins = [
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
@@ -71,6 +85,5 @@ if (production) {
     }),
   ];
 }
-
 
 module.exports = config;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Card } from 'react-mdl';
 import { Link } from 'react-router';
 
-import { WidgetConfiguration } from 'common/lib/entites';
+import { WidgetConfiguration } from 'cetti-common/lib/entites';
 import { classNames } from '../../lib/helpers';
 
 const styles = require('./widget.scss');

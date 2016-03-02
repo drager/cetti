@@ -6,7 +6,7 @@ import {
   NumberType,
   ListType,
   WidgetType,
-} from 'common/lib/entites';
+} from 'cetti-common/lib/entites';
 
 const initialState = {
   dashboards: {

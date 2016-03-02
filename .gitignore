@@ -9,7 +9,7 @@ db
 # Build chain
 .tmp/
 dist/
-tsconfig.json
+*/tsconfig.json
 bin/
 
 # node.js

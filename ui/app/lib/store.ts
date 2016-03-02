@@ -4,8 +4,8 @@ import { persistStore, autoRehydrate } from 'redux-persist';
 import { websocketMiddleware } from 'redux-websocket/lib/client';
 import { syncStoreEnhancer } from 'redux-websocket/lib/sync';
 
-import { actions } from 'common/lib/actions';
-import { BucketState, DashboardState } from 'common/lib/state-types';
+import { actions } from 'cetti-common/lib/actions';
+import { BucketState, DashboardState } from 'cetti-common/lib/state-types';
 
 import { webSocketClient } from './websocket';
 

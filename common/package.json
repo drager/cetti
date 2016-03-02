@@ -1,11 +1,12 @@
 {
-  "name": "common",
+  "name": "cetti-common",
   "version": "0.0.1",
   "private": true,
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "tsdm rewire"
+    "postinstall": "tsdm rewire",
+    "lint": "tslint -c ../tslint.json `find lib -name '*.ts'"
   },
   "author": "",
   "license": "Apache-2.0",

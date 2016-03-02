@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Card, IconButton } from 'react-mdl';
 
-import { DataPoint, ErrorMessage } from 'common/lib/entites';
-import { actions } from 'common/lib/actions';
+import { DataPoint, ErrorMessage } from 'cetti-common/lib/entites';
+import { actions } from 'cetti-common/lib/actions';
 
 import { dispatch } from '../../lib/store';
 import { formatDate, isoDate } from '../../lib/helpers';

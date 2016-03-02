@@ -5,7 +5,7 @@ import {
   ListWidgetConfiguration,
   WidgetConfiguration,
   WidgetType,
-} from 'common/lib/entites';
+} from 'cetti-common/lib/entites';
 import { stateful } from '../lib/store';
 
 import { ChartWidget } from './widgets/chart-widget';

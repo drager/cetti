@@ -10,7 +10,7 @@
     "postinstall:tsdm": "tsdm rewire",
     "postinstall:tsconfig": "tsconfig -i 2",
     "lint": "npm run lint:typescript",
-    "lint:typescript": "tslint `find lib -name '*.ts' -o -name '*.tsx'`",
+    "lint:typescript": "tslint -c ../tslint.json `find lib -name '*.ts'`",
     "build": "npm run build_typescript && npm-run-all build:*",
     "build:babel": "babel --out-dir bin .tmp --presets es2015",
     "build_typescript": "tsc -p .",

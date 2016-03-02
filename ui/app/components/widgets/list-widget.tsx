@@ -6,7 +6,7 @@ import {
   ListType,
   ListWidgetConfiguration,
   WidgetConfiguration,
-} from 'common/lib/entites';
+} from 'cetti-common/lib/entites';
 
 import { stateful } from '../../lib/store';
 

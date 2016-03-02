@@ -1,4 +1,4 @@
-import { DashboardState } from 'common/lib/state-types';
+import { DashboardState } from 'cetti-common/lib/state-types';
 import { createReducer } from 'redux-decorated';
 import initialState from '../initial-state';
 

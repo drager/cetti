@@ -19,7 +19,7 @@
     "clean": "rm -rf .tmp"
   },
   "dependencies": {
-    "history": "^1.17.1",
+    "history": "^1.17.0",
     "material-design-lite": "^1.0.6",
     "nedb-persist": "^0.1.0",
     "ramda": "^0.18.0",

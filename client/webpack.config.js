@@ -1,5 +1,8 @@
-var path = require('path');
-var config = {
+const path = require('path');
+
+const production = process.env.NODE_ENV === 'production';
+
+const config = {
   entry: {
     javascript: ['babel-polyfill', './app/index'],
     html: './app/index.html'
@@ -9,12 +12,12 @@ var config = {
     filename: 'app.js',
   },
   debug: true,
-  devtool: 'eval-source-map',
+  devtool: production ? '' : 'eval-source-map',
   module: {
     loaders: [
       {
         test: /\.ts(x?)$/,
-        exclude: /node_modules/,
+        exclude: /node_modules\/(?!common)/,
         loaders: [
           'react-hot',
           'babel?' + JSON.stringify({
@@ -54,11 +57,11 @@ var config = {
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.ts', '.tsx']
+    extensions: ['', '.js', '.ts', '.tsx'],
   },
 };
 
-if (process.env.NODE_ENV === 'production') {
+if (production) {
   var webpack = require('webpack');
 
   config.plugins = [

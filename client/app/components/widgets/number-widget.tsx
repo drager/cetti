@@ -5,9 +5,9 @@ import {
   NumberType,
   NumberWidgetConfiguration,
   WidgetConfiguration,
-} from '../../lib/entites';
+} from 'common/lib/entites';
 import { classNames } from '../../lib/helpers';
-import { stateful } from '../../redux/helpers';
+import { stateful } from '../../lib/store';
 
 import { Widget } from './widget';
 

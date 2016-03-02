@@ -3,22 +3,17 @@
     "jsx": "preserve",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "sourceMap": true,
-    "inlineSourceMap": false,
-    "inlineSources": false,
     "target": "es6",
     "module": "es6",
-    "outDir": ".tmp/ts",
+    "outDir": ".tmp",
     "moduleResolution": "node"
   },
   "filesGlob": [
     "*.ts",
-    "app/**/*.tsx",
-    "app/**/*.ts",
+    "lib/**/*.ts",
     "typings/**/*.ts",
     "node_modules/common/lib/**/*.ts",
-    "node_modules/redux-decorated/typings.d.ts",
-    "node_modules/redux-websocket/typings.d.ts"
+    "node_modules/nedb-persist/typings.d.ts"
   ],
   "files": [],
   "formatCodeOptions": {
@@ -34,5 +29,9 @@
     "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
     "placeOpenBraceOnNewLineForFunctions": false,
     "placeOpenBraceOnNewLineForControlBlocks": false
+  },
+  "compileOnSave" : false,
+  "atom": {
+      "rewriteTsconfig": true
   }
 }

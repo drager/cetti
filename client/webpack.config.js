@@ -1,4 +1,7 @@
-var path = require('path');
+'use strict';
+
+const path = require('path');
+const webpack = require('webpack');
 
 const production = process.env.NODE_ENV === 'production';
 
@@ -8,7 +11,7 @@ const babelProdPlugins = babelPlugins.concat(
 );
 
 
-var config = {
+const config = {
   entry: {
     javascript: ['babel-polyfill', './app/index'],
     html: './app/index.html'
@@ -23,7 +26,7 @@ var config = {
     loaders: [
       {
         test: /\.ts(x?)$/,
-        exclude: /node_modules/,
+        exclude: /node_modules\/(?!common)/,
         loaders: [
           'react-hot',
           'babel?' + JSON.stringify({
@@ -74,9 +77,7 @@ var config = {
   },
 };
 
-if (pproduction) {
-  var webpack = require('webpack');
-
+if (production) {
   config.plugins = [
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
@@ -84,6 +85,5 @@ if (pproduction) {
     }),
   ];
 }
-
 
 module.exports = config;

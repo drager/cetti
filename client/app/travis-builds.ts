@@ -1,4 +1,4 @@
-import { cettiClient } from './client-creator';
+import { cettiClient } from './lib/client-creator';
 
 export async function getBuilds() {
   const bucket = cettiClient.bucket('build');

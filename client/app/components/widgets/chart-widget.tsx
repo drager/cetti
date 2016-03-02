@@ -7,10 +7,10 @@ import {
   ChartType,
   ChartWidgetConfiguration,
   WidgetConfiguration,
-} from '../../lib/entites';
-import { stateful } from '../../redux/helpers';
+} from 'common/lib/entites';
 
 import { catmullRomSpline } from '../../lib/catmull-rom-spline';
+import { stateful } from '../../lib/store';
 import { Widget } from './widget';
 
 const styles = require('./chart-widget.scss');
@@ -47,7 +47,7 @@ const axisWidth = 50;
 @stateful(state => ({buckets: state.buckets}))
 export class ChartWidget extends React.Component<Properties, State> {
 
-  get diagramSize() {
+  getDiagramSize() {
     const width = this.state.width - padding * 2 - axisWidth;
     const height = this.state.height - padding * 2;
 
@@ -61,7 +61,7 @@ export class ChartWidget extends React.Component<Properties, State> {
   constructor(props) {
     super(props);
 
-    this.state = {width: 0, height: 0};
+    this.state = {width: 0, height: 0, buckets: {}};
     // Binding this becouse the method will be used as a callback
     this.measureSize = this.measureSize.bind(this);
   }
@@ -81,7 +81,7 @@ export class ChartWidget extends React.Component<Properties, State> {
 
   getData(): Data {
     const configuration = this.props.configuration.typeConfiguration;
-    let dataPoints = this.state.buckets[this.props.configuration.bucket];
+    let dataPoints = this.state.buckets[this.props.configuration.bucket] || [];
 
     const fixAxis = (axis: AxisConfiguration) => {
       switch (axis.type) {
@@ -197,7 +197,7 @@ export class ChartWidget extends React.Component<Properties, State> {
   }
 
   private renderBarDiagram(data: Data) {
-    const {width, height} = this.diagramSize;
+    const {width, height} = this.getDiagramSize();
     const barWidth = 0.5 * width / data.x.length;
     const xScale = (width - barWidth) / data.x.length;
     const yScale = height / data.y.length;
@@ -212,7 +212,7 @@ export class ChartWidget extends React.Component<Properties, State> {
 
   private renderLineDiagram(data: Data) {
     const {fill, smooth} = this.getConfiguration();
-    const {width, height} = this.diagramSize;
+    const {width, height} = this.getDiagramSize();
     const yMin = data.y.min;
     const xScale = width / data.x.length;
     const yScale = height / data.y.length;
@@ -220,6 +220,9 @@ export class ChartWidget extends React.Component<Properties, State> {
                            `${height + padding - (Math.max(y, yMin) - yMin) * yScale}`;
 
     let points = data.points;
+    if (points.length === 0) {
+      return null;
+    }
     if (smooth) {
       points = catmullRomSpline(points, 20);
     }

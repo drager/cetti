@@ -1,3 +1,4 @@
+import * as R from 'ramda';
 import * as React from 'react';
 
 import {
@@ -5,8 +6,9 @@ import {
   ListType,
   ListWidgetConfiguration,
   WidgetConfiguration,
-} from '../../lib/entites';
-import { stateful } from '../../redux/helpers';
+} from 'common/lib/entites';
+
+import { stateful } from '../../lib/store';
 
 import { ListItem } from './list-item';
 import { ErrorListItem } from './error-list-item';
@@ -31,11 +33,17 @@ const type = {
 export class ListWidget extends React.Component<Properties, State> {
 
   getListData(): any[] {
-    const {filter, subtitle, title, type} = this.props.configuration.typeConfiguration;
+    let {filter, subtitle, title, type} = this.props.configuration.typeConfiguration;
     let dataPoints = this.state.buckets[this.props.configuration.bucket] || [];
 
     if (filter) {
-      dataPoints = dataPoints.filter(filter);
+      let filterMethod = R.identity;
+      if (R.head(filter) === '!') {
+        filter = filter.slice(1);
+        filterMethod = R.not;
+      }
+      filterMethod = R.compose(filterMethod, R.path(filter.split('.')));
+      dataPoints = R.filter(filterMethod, dataPoints);
     }
 
     if (type === ListType.error) {

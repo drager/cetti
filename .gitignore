@@ -2,12 +2,15 @@
 .DS_Store
 
 # typings
-typings/
+*/typings/tsd.d.ts
+
+db
 
 # Build chain
 .tmp/
 dist/
 tsconfig.json
+bin/
 
 # node.js
 node_modules/

@@ -1,0 +1,46 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "npm-run-all postinstall:*",
+    "postinstall:ts_base_config": "cp tsconfig.base.json tsconfig.json",
+    "postinstall:tsdm": "tsdm rewire",
+    "postinstall:tsconfig": "tsconfig -i 2",
+    "lint": "npm run lint:typescript",
+    "lint:typescript": "tslint `find lib -name '*.ts' -o -name '*.tsx'`",
+    "build": "npm run build_typescript && npm-run-all build:*",
+    "build:babel": "babel --out-dir bin .tmp --presets es2015",
+    "build_typescript": "tsc -p .",
+    "watch": "npm-run-all --parallel watch:*",
+    "watch:typescript": "tsc --watch",
+    "watch:babel": "babel --out-dir bin .tmp --presets es2015 --watch"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "express": "^4.13.4",
+    "nedb-persist": "^0.1.0",
+    "redux": "^3.3.1",
+    "redux-decorated": "0.2.0-dev.2",
+    "redux-persist": "^1.5.2",
+    "redux-websocket": "0.2.0-dev.1"
+  },
+  "devDependencies": {
+    "babel": "^6.3.26",
+    "babel-cli": "^6.5.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-2": "^6.3.13",
+    "npm-run-all": "^1.5.1",
+    "retyped-node-tsd-ambient": "^1.5.3-0",
+    "retyped-redux-tsd-ambient": "^1.0.0-0",
+    "retyped-websocket-tsd-ambient": "0.0.0-0",
+    "tsconfig-glob": "^0.4.1",
+    "tsdm": "0.1.0-3",
+    "tslint": "^3.5.0",
+    "typescript": "^1.7.5",
+    "typings": "^0.6.6"
+  }
+}

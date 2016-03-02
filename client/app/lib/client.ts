@@ -1,6 +1,6 @@
-import {PushData} from './lib/entites';
-import {actions} from './redux/actions';
-import {dispatch} from './redux/helpers';
+import { PushData } from 'common/lib/entites';
+import { actions } from 'common/lib/actions';
+import { dispatch } from './store';
 
 const buckets = {
   performance: {

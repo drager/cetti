@@ -9,7 +9,7 @@
     "postinstall:tsconfig": "tsconfig -i 2",
     "start": "npm run dev",
     "lint": "npm run lint:typescript; a=$?; npm run lint:scss; exit $(($a + $?))",
-    "lint:typescript": "tslint `find app -name '*.ts' -o -name '*.tsx'`",
+    "lint:typescript": "tslint -c ../tslint.json `find app -name '*.ts' -o -name '*.tsx'`",
     "lint:scss": "! (sass-lint app/**/*.scss --ignore 'app/style/mdl.global.scss, app/style/react-mdl-layout.scss' --verbose  | grep '^' )",
     "build": "rm -rf dist && NODE_ENV=production webpack",
     "build_dev": "webpack",

@@ -1,0 +1,16 @@
+{
+  "name": "cetti",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "tslint -c ../../tslint.json index.ts",
+    "test": "tsc"
+  },
+  "author": "Beanloop AB",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "tslint": "^3.5.0",
+    "typescript": "^1.8.7"
+  }
+}

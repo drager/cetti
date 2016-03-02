@@ -5,7 +5,7 @@ import {
   NumberType,
   NumberWidgetConfiguration,
   WidgetConfiguration,
-} from 'common/lib/entites';
+} from 'cetti-common/lib/entites';
 import { classNames } from '../../lib/helpers';
 import { stateful } from '../../lib/store';
 

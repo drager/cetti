@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Layout, Content, Drawer, Navigation } from 'react-mdl';
 import { Link } from 'react-router';
 
-import { DashboardsConfiguration } from 'common/lib/entites';
+import { DashboardsConfiguration } from 'cetti-common/lib/entites';
 import { classNames } from '../lib/helpers';
 import { stateful } from '../lib/store';
 

@@ -1,13 +1,11 @@
-import { PushData } from 'common/lib/entites';
-import { actions } from 'common/lib/actions';
-import { dispatch } from './store';
+import { PushData } from 'cetti-common';
 
 const buckets = {
   performance: {
     downloadTime: 'performance.downloadTime',
     renderTime: 'performance.renderTime',
-  }
-}
+  },
+};
 
 /**
  * To do at startup:
@@ -157,7 +155,6 @@ export class Cetti {
     }
 
     //TODO: Push data in some way
-    dispatch(actions.addData, {data: this.dataToPush});
 
     this.dataToPush = [];
     this.isScheduled = false;

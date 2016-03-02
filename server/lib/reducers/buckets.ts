@@ -1,7 +1,6 @@
 import { createReducer, updateIn } from 'redux-decorated';
-import { BucketState } from 'common/lib/state-types';
-
-import { actions } from 'common/lib/actions';
+import { BucketState } from 'cetti-common/lib/state-types';
+import { actions } from 'cetti-common/lib/actions';
 import initialState from '../initial-state';
 
 export const buckets = createReducer<BucketState>(initialState.buckets as BucketState)

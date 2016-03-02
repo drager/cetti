@@ -7,7 +7,7 @@ import {
   ChartType,
   ChartWidgetConfiguration,
   WidgetConfiguration,
-} from 'common/lib/entites';
+} from 'cetti-common/lib/entites';
 
 import { catmullRomSpline } from '../../lib/catmull-rom-spline';
 import { stateful } from '../../lib/store';

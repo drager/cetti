@@ -7,8 +7,8 @@
   "scripts": {
     "postinstall": "npm-run-all postinstall:*",
     "postinstall:ts_base_config": "cp tsconfig.base.json tsconfig.json",
-    "postinstall:tsconfig": "tsconfig -i 2",
     "postinstall:tsdm": "tsdm rewire",
+    "postinstall:tsconfig": "tsconfig -i 2",
     "lint": "npm run lint:typescript",
     "lint:typescript": "tslint `find lib -name '*.ts' -o -name '*.tsx'`",
     "build": "npm run build_typescript && npm-run-all build:*",

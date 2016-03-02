@@ -2,7 +2,7 @@
 .DS_Store
 
 # typings
-typings/
+*/typings/tsd.d.ts
 
 db
 

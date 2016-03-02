@@ -1,11 +1,7 @@
 import { Action as DecoratedAction, createActions } from 'redux-decorated';
+import { Action as WebSocketAction } from 'redux-websocket/lib/common';
 
-interface Action<T> extends DecoratedAction<T> {
-  meta?: {
-    toClient?: boolean,
-    toServer?: boolean,
-  },
-};
+type Action<T> = DecoratedAction<T> & WebSocketAction
 
 export const actions = createActions({
   addData: {} as Action<{data: any[]}>,

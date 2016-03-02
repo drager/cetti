@@ -1,7 +1,5 @@
-/// <reference path="../typings/browser/ambient/react/react.d.ts" />
-
 declare module 'react-mdl' {
-  import React = __React;
+  import * as React from 'react';
 
   interface Properties {
     className?: string;

@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "postinstall": "npm-run-all postinstall:*",
-    "postinstall:typings": "typings install",
     "postinstall:ts_base_config": "cp tsconfig.base.json tsconfig.json",
     "postinstall:tsconfig": "tsconfig -i 2",
     "postinstall:tsdm": "tsdm rewire",
@@ -67,7 +66,6 @@
     "tsdm": "0.1.0-3",
     "tslint": "^2.5.1",
     "typescript": "^1.7.5",
-    "typings": "^0.6.8",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
   },

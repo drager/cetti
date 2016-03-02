@@ -11,10 +11,7 @@
   "filesGlob": [
     "*.ts",
     "lib/**/*.ts",
-    "typings/tsd.d.ts",
-    "typings_custom/**/*.ts",
-    "typings/express.d.ts",
-    "typings/redux-persist.d.ts",
+    "typings/**/*.ts",
     "node_modules/common/lib/**/*.ts",
     "node_modules/nedb-persist/typings.d.ts"
   ],
